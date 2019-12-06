@@ -6,8 +6,8 @@ import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
 import com.soundsonic.simplemensa.util.replaceFragmentNoBackstack
 import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.toolbarMain
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_main.toolbarMain
 
 class MainActivity : DaggerAppCompatActivity() {
 

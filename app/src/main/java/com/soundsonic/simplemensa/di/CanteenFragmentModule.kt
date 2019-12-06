@@ -2,9 +2,9 @@ package com.soundsonic.simplemensa.di
 
 import androidx.fragment.app.viewModels
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
+import com.soundsonic.simplemensa.ui.base.BaseVMFactory
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
 import com.soundsonic.simplemensa.ui.main.viewmodel.CanteenViewModel
-import com.soundsonic.simplemensa.ui.base.BaseVMFactory
 import dagger.Module
 import dagger.Provides
 

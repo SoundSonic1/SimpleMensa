@@ -7,10 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.data.model.Meal
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlinx.coroutines.launch
 
 class MealsViewModel(
     private val openMensaApi: OpenMensaApi,

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.databinding.MealsFragmentBinding
@@ -15,8 +14,8 @@ import com.soundsonic.simplemensa.ui.meals.MealsListAdapter
 import com.soundsonic.simplemensa.ui.meals.viewmodel.MealsViewModel
 import com.soundsonic.simplemensa.util.Constants.CANTEEN_KEY
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.meals_fragment.*
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.meals_fragment.*
 
 class MealsFragment : DaggerFragment() {
 
@@ -27,7 +26,8 @@ class MealsFragment : DaggerFragment() {
     lateinit var mealsListAdapter: MealsListAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 

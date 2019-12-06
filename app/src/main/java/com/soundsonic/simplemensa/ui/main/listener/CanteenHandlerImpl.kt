@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class CanteenHandlerImpl @Inject constructor(
     private val fm: FragmentManager
-) : CanteenHandler{
+) : CanteenHandler {
 
     override fun onCanteenClicked(canteen: Canteen) {
         replaceFragment(fm, R.id.mainContent, MealsFragment.newInstance(canteen))

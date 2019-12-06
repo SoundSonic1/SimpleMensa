@@ -6,14 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.databinding.CanteenFragmentBinding
 import com.soundsonic.simplemensa.ui.main.adapter.CanteenListAdapter
 import com.soundsonic.simplemensa.ui.main.viewmodel.CanteenViewModel
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.canteen_fragment.*
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.canteen_fragment.*
 
 class CanteenFragment : DaggerFragment() {
 
@@ -24,7 +23,8 @@ class CanteenFragment : DaggerFragment() {
     lateinit var canteenListAdapter: CanteenListAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
