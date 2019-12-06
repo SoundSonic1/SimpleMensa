@@ -8,8 +8,7 @@
 
     <style name="ToolBarStyle" parent="Theme.AppCompat">
         <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
-        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="android:background">@color/colorDarkGey</item>
     </style>
 
 </resources>
