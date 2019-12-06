@@ -8,10 +8,10 @@ fun replaceFragmentNoBackStack(
     containerViewId: Int,
     fragment: Fragment
 ) {
-    val transaction = fm.beginTransaction()
-    transaction
-        .replace(containerViewId, fragment)
-        .commit()
+    fm.beginTransaction().apply {
+        replace(containerViewId, fragment)
+        commit()
+    }
 }
 
 fun replaceFragment(
@@ -19,9 +19,9 @@ fun replaceFragment(
     containerViewId: Int,
     fragment: Fragment
 ) {
-    val transaction = fm.beginTransaction()
-    transaction
-        .replace(containerViewId, fragment)
-        .addToBackStack(null)
-        .commit()
+    fm.beginTransaction().apply {
+        replace(containerViewId, fragment)
+        addToBackStack(null)
+        commit()
+    }
 }
