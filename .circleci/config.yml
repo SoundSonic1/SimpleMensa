@@ -24,6 +24,12 @@ jobs:
           name: Run unit tests
           command: ./gradlew testDebugUnitTest
       - run:
+          name: Run jacocoTest
+          command: ./gradlew jacocoTestDebugUnitTestReport
+      - run:
+          name: Upload to codecov
+          command: bash <(curl -s https://codecov.io/bash) -t a6b8afd6-1ed4-4e8c-9a21-7ced0f83ba36
+      - run:
           name: Run Android lint tool
           command: ./gradlew lintDebug
       - run:

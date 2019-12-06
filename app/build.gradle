@@ -8,6 +8,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: "org.jlleitschuh.gradle.ktlint"
 
+apply plugin: 'jacoco-android'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -27,6 +29,11 @@ android {
     }
     dataBinding {
         enabled = true
+    }
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
     }
 }
 
@@ -79,4 +86,24 @@ ktlint {
             }
         }
     }
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+jacocoAndroidUnitTestReport {
+    excludes += ['**/*Fragment*.*',
+                 '**/*Activity*.*',
+                 '**/*App.*',
+                 '**/*ViewHolder*.*',
+                 '**/*VMFactory*.*',
+                 '**/*ListAdapter*.*',
+                 '**/*BindingAdapter*.*',
+                 '**/*Constants*.*',
+                 '**/*Module*.*']
 }

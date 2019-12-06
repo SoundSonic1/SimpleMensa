@@ -11,3 +11,10 @@ fun provideApi(): OpenMensaApi =
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
         .create(OpenMensaApi::class.java)
+
+fun provideMockApi(): OpenMensaApi =
+    Retrofit.Builder()
+        .baseUrl("https://www.google.com/")
+        .addConverterFactory(MoshiConverterFactory.create())
+        .build()
+        .create(OpenMensaApi::class.java)
