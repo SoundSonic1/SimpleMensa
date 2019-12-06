@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.data.model.Meal
 import com.soundsonic.simplemensa.ui.main.adapter.CanteenListAdapter
-import com.soundsonic.simplemensa.ui.meals.MealsListAdapter
+import com.soundsonic.simplemensa.ui.meals.adapter.MealsListAdapter
 
 object BindingAdapter {
 

@@ -1,10 +1,9 @@
-package com.soundsonic.simplemensa.ui.meals
+package com.soundsonic.simplemensa.ui.meals.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.soundsonic.simplemensa.data.model.Meal
-import com.soundsonic.simplemensa.ui.meals.adapter.MealViewHolder
 import javax.inject.Inject
 
 class MealsListAdapter @Inject constructor() : ListAdapter<Meal, MealViewHolder>(MEAL_DIFF) {

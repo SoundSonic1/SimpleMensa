@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.databinding.MealsFragmentBinding
-import com.soundsonic.simplemensa.ui.meals.MealsListAdapter
+import com.soundsonic.simplemensa.ui.meals.adapter.MealsListAdapter
 import com.soundsonic.simplemensa.ui.meals.viewmodel.MealsViewModel
 import com.soundsonic.simplemensa.util.Constants.CANTEEN_KEY
 import dagger.android.support.DaggerFragment
