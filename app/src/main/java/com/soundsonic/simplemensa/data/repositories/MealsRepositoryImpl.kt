@@ -11,7 +11,7 @@ class MealsRepositoryImpl @Inject constructor(
 ) : MealsRepository {
 
     override suspend fun getMeals(date: String): List<Meal> = try {
-        openMensaApi.getMeals(canteen.id.toString(), date)
+        openMensaApi.getMeals(canteen.id, date)
     } catch (e: Exception) {
         e.printStackTrace()
         emptyList()

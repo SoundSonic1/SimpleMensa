@@ -12,7 +12,7 @@ interface OpenMensaApi {
 
     @GET("canteens/{id}/days/{date}/meals")
     suspend fun getMeals(
-        @Path("id") id: String,
+        @Path("id") id: Long,
         @Path("date") date: String
     ): List<Meal>
 }
