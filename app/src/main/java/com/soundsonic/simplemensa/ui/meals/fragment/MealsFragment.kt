@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.databinding.MealsFragmentBinding
@@ -29,6 +30,9 @@ class MealsFragment : DaggerFragment() {
     @Inject
     lateinit var mealsListAdapter: MealsListAdapter
 
+    @Inject
+    lateinit var customItemAnimator: RecyclerView.ItemAnimator
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,8 +51,11 @@ class MealsFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerViewMeals.adapter = mealsListAdapter
-        recyclerViewMeals.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewMeals.apply {
+            adapter = mealsListAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            itemAnimator = customItemAnimator
+        }
 
         (activity as AppCompatActivity).supportActionBar?.title = canteen.name
     }

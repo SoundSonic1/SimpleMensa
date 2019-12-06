@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.databinding.CanteenFragmentBinding
 import com.soundsonic.simplemensa.ui.main.adapter.CanteenListAdapter
@@ -21,6 +22,9 @@ class CanteenFragment : DaggerFragment() {
 
     @Inject
     lateinit var canteenListAdapter: CanteenListAdapter
+
+    @Inject
+    lateinit var customItemAnimator: RecyclerView.ItemAnimator
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +44,10 @@ class CanteenFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerViewMain.adapter = canteenListAdapter
-        recyclerViewMain.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewMain.apply {
+            adapter = canteenListAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            itemAnimator = customItemAnimator
+        }
     }
 }
