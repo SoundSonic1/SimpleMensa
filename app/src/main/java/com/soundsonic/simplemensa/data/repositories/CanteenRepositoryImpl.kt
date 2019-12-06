@@ -3,7 +3,9 @@ package com.soundsonic.simplemensa.data.repositories
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
 import com.soundsonic.simplemensa.data.model.Canteen
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class CanteenRepositoryImpl @Inject constructor(
     private val openMensaApi: OpenMensaApi
 ) : CanteenRepository {

@@ -25,6 +25,7 @@ object AppModule {
         PreferenceManager.getDefaultSharedPreferences(app)
 
     @Provides
+    @Singleton
     fun openMensaApi(): OpenMensaApi = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create())
         .baseUrl(BASE_URL)
