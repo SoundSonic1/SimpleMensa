@@ -1,8 +1,8 @@
 package com.soundsonic.simplemensa.di
 
 import androidx.fragment.app.viewModels
-import com.soundsonic.simplemensa.data.api.OpenMensaApi
 import com.soundsonic.simplemensa.data.model.Canteen
+import com.soundsonic.simplemensa.data.repositories.MealsRepository
 import com.soundsonic.simplemensa.ui.base.BaseVMFactory
 import com.soundsonic.simplemensa.ui.meals.fragment.MealsFragment
 import com.soundsonic.simplemensa.ui.meals.viewmodel.MealsViewModel
@@ -20,17 +20,11 @@ class MealsFragmentModule {
     @Provides
     fun provideMealsViewModel(
         mealsFragment: MealsFragment,
-        canteen: Canteen,
-        openMensaApi: OpenMensaApi
+        mealsRepository: MealsRepository
     ): MealsViewModel {
 
         val vm by mealsFragment.viewModels<MealsViewModel> {
-            BaseVMFactory {
-                MealsViewModel(
-                    openMensaApi,
-                    canteen
-                )
-            }
+            BaseVMFactory { MealsViewModel(mealsRepository) }
         }
         return vm
     }

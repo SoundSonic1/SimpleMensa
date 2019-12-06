@@ -1,7 +1,7 @@
 package com.soundsonic.simplemensa.di
 
 import androidx.fragment.app.viewModels
-import com.soundsonic.simplemensa.data.api.OpenMensaApi
+import com.soundsonic.simplemensa.data.repositories.CanteenRepository
 import com.soundsonic.simplemensa.ui.base.BaseVMFactory
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
 import com.soundsonic.simplemensa.ui.main.viewmodel.CanteenViewModel
@@ -14,13 +14,11 @@ class CanteenFragmentModule {
     @Provides
     fun provideCanteenViewModel(
         canteenFragment: CanteenFragment,
-        openMensaApi: OpenMensaApi
+        canteenRepository: CanteenRepository
     ): CanteenViewModel {
         val vm by canteenFragment.viewModels<CanteenViewModel> {
             BaseVMFactory {
-                CanteenViewModel(
-                    openMensaApi
-                )
+                CanteenViewModel(canteenRepository)
             }
         }
         return vm

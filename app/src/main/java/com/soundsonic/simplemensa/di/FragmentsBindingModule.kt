@@ -8,9 +8,13 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class FragmentsBindingModule {
 
-    @ContributesAndroidInjector(modules = [CanteenFragmentModule::class, ClickHandlerModule::class])
+    @ContributesAndroidInjector(modules = [
+        CanteenFragmentModule::class,
+        RepositoryModule::class,
+        ClickHandlerModule::class
+    ])
     abstract fun canteenFragment(): CanteenFragment
 
-    @ContributesAndroidInjector(modules = [MealsFragmentModule::class])
+    @ContributesAndroidInjector(modules = [MealsFragmentModule::class, RepositoryModule::class])
     abstract fun mealsFragment(): MealsFragment
 }

@@ -3,7 +3,7 @@ package com.soundsonic.simplemensa.util
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 
-fun replaceFragmentNoBackstack(
+fun replaceFragmentNoBackStack(
     fm: FragmentManager,
     containerViewId: Int,
     fragment: Fragment

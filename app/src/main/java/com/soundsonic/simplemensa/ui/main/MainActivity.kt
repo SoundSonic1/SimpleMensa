@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
-import com.soundsonic.simplemensa.util.replaceFragmentNoBackstack
+import com.soundsonic.simplemensa.util.replaceFragmentNoBackStack
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_main.toolbarMain
@@ -23,6 +23,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
         toolbarMain.title = getString(R.string.app_name)
 
-        replaceFragmentNoBackstack(supportFragmentManager, R.id.mainContent, CanteenFragment())
+        replaceFragmentNoBackStack(supportFragmentManager, R.id.mainContent, CanteenFragment())
     }
 }
