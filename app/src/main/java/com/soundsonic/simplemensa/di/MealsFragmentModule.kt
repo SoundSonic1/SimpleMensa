@@ -11,7 +11,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class MealsFragmentModule {
+object MealsFragmentModule {
 
     @Provides
     fun provideCanteen(mealsFragment: MealsFragment): Canteen =

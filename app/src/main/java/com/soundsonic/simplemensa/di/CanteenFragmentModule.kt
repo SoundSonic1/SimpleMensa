@@ -9,7 +9,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class CanteenFragmentModule {
+object CanteenFragmentModule {
 
     @Provides
     fun provideCanteenViewModel(
