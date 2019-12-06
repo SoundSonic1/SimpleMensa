@@ -7,7 +7,7 @@ data class Meal(
     val id: Long,
     val name: String,
     val notes: List<String>?,
-    val category: String?,
-    val image: String?,
-    val url: String?
+    val category: String? = null,
+    val image: String? = null,
+    val url: String? = null
 )
