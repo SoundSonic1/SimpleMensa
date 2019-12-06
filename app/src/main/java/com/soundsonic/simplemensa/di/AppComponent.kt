@@ -15,7 +15,8 @@ import javax.inject.Singleton
         AppModule::class,
         ActivityBindingModule::class,
         FragmentsBindingModule::class,
-        CanteenFragmentModule::class
+        CanteenFragmentModule::class,
+        MealsFragmentModule::class
     ]
 )
 

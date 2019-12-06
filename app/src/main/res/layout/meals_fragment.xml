@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="viewModel"
-            type="com.soundsonic.simplemensa.ui.main.viewmodel.CanteenViewModel" />
+            type="com.soundsonic.simplemensa.ui.meals.viewmodel.MealsViewModel" />
     </data>
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".ui.main.fragment.CanteenFragment"
-        >
+        tools:context=".ui.meals.fragment.MealsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewMain"
+            android:id="@+id/recyclerViewMeals"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:canteens="@{viewModel.canteens}"
-            >
+            app:meals="@{viewModel.meals}">
+
         </androidx.recyclerview.widget.RecyclerView>
 
     </FrameLayout>

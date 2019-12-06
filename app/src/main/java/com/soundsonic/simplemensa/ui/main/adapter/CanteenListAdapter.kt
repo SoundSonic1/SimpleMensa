@@ -4,11 +4,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.soundsonic.simplemensa.data.model.Canteen
+import com.soundsonic.simplemensa.ui.main.listener.CanteenHandler
+import javax.inject.Inject
 
-class CanteenListAdapter : ListAdapter<Canteen, CanteenViewHolder>(CANTEEN_DIFF) {
+class CanteenListAdapter @Inject constructor(
+    private val canteenHandler: CanteenHandler
+) : ListAdapter<Canteen, CanteenViewHolder>(CANTEEN_DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CanteenViewHolder {
-        return CanteenViewHolder(parent)
+        return CanteenViewHolder(parent, canteenHandler)
     }
 
     override fun onBindViewHolder(holder: CanteenViewHolder, position: Int) {

@@ -9,6 +9,7 @@ import com.soundsonic.simplemensa.data.model.Canteen
 import kotlinx.coroutines.launch
 
 class CanteenViewModel(private val openMensaApi: OpenMensaApi) : ViewModel() {
+
     private val _canteens by lazy {
         MutableLiveData<List<Canteen>>().also {
             viewModelScope.launch {

@@ -1,4 +1,4 @@
-package com.soundsonic.simplemensa.util
+package com.soundsonic.simplemensa.ui.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

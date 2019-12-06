@@ -20,6 +20,9 @@ class CanteenFragment : DaggerFragment() {
     @Inject
     lateinit var viewModel: CanteenViewModel
 
+    @Inject
+    lateinit var canteenListAdapter: CanteenListAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,8 +40,7 @@ class CanteenFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = CanteenListAdapter()
-        recyclerViewMain.adapter = adapter
+        recyclerViewMain.adapter = canteenListAdapter
         recyclerViewMain.layoutManager = LinearLayoutManager(requireContext())
     }
 }

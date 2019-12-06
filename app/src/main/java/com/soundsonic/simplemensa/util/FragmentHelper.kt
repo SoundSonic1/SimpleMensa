@@ -13,3 +13,15 @@ fun replaceFragmentNoBackstack(
         .replace(containerViewId, fragment)
         .commit()
 }
+
+fun replaceFragment(
+    fm: FragmentManager,
+    containerViewId: Int,
+    fragment: Fragment
+) {
+    val transaction = fm.beginTransaction()
+    transaction
+        .replace(containerViewId, fragment)
+        .addToBackStack(null)
+        .commit()
+}

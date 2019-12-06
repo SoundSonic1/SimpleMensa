@@ -3,22 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="canteen"
-            type="com.soundsonic.simplemensa.data.model.Canteen" />
-
-        <variable
-            name="canteenHandler"
-            type="com.soundsonic.simplemensa.ui.main.listener.CanteenHandler" />
+            name="meal"
+            type="com.soundsonic.simplemensa.data.model.Meal" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:onClick="@{() -> canteenHandler.onCanteenClicked(canteen)}"
         app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
-        >
-
+        app:cardElevation="4dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,23 +20,15 @@
             android:background="?android:attr/selectableItemBackground"
             >
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/mensaName"
+                android:id="@+id/mealName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:padding="1dp"
-                android:text="@{canteen.name}"
-                />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/mensaAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:padding="1dp"
-                android:text="@{canteen.address}"
+                android:text="@{meal.name}"
                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 </layout>
