@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
+import com.soundsonic.simplemensa.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -27,7 +28,7 @@ class AppModule {
     @Provides
     fun openMensaApi(): OpenMensaApi = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create())
-        .baseUrl("https://api.studentenwerk-dresden.de/openmensa/v2/")
+        .baseUrl(BASE_URL)
         .build()
         .create(OpenMensaApi::class.java)
 }
