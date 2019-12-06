@@ -16,7 +16,10 @@
             android:id="@+id/toolbarMain"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:theme="@style/ToolBarStyle"
+            app:title="@string/app_name"
+            >
 
         </androidx.appcompat.widget.Toolbar>
 

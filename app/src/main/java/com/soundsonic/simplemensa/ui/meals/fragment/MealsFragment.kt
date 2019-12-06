@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,9 @@ import javax.inject.Inject
 import kotlinx.android.synthetic.main.meals_fragment.*
 
 class MealsFragment : DaggerFragment() {
+
+    @Inject
+    lateinit var canteen: Canteen
 
     @Inject
     lateinit var viewModel: MealsViewModel
@@ -45,6 +49,13 @@ class MealsFragment : DaggerFragment() {
 
         recyclerViewMeals.adapter = mealsListAdapter
         recyclerViewMeals.layoutManager = LinearLayoutManager(requireContext())
+
+        (activity as AppCompatActivity).supportActionBar?.title = canteen.name
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
     }
 
     companion object {

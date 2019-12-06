@@ -21,8 +21,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
         setSupportActionBar(toolbarMain)
 
-        toolbarMain.title = getString(R.string.app_name)
-
         replaceFragmentNoBackStack(supportFragmentManager, R.id.mainContent, CanteenFragment())
     }
 }
