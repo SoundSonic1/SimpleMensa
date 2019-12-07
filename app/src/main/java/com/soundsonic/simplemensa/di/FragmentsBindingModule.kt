@@ -27,6 +27,6 @@ abstract class FragmentsBindingModule {
     ])
     abstract fun mealsFragment(): MealsFragment
 
-    @ContributesAndroidInjector(modules = [MealDetailFragmentModul::class])
+    @ContributesAndroidInjector(modules = [MealDetailFragmentModule::class])
     abstract fun mealDetailFragment(): MealDetailFragment
 }

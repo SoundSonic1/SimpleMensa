@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-object MealDetailFragmentModul {
+object MealDetailFragmentModule {
 
     @Provides
     fun provideMeal(mealDetailFragment: MealDetailFragment): Meal =
