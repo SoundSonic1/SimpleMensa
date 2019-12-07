@@ -40,11 +40,6 @@ class TabFragment : DaggerFragment() {
         tabLayoutDates.setupWithViewPager(viewPagerDates)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
-    }
-
     companion object {
         fun newInstance(canteen: Canteen) = TabFragment().apply {
             arguments = bundleOf(CANTEEN_KEY to canteen)
