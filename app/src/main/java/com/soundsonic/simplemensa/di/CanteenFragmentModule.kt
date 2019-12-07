@@ -7,6 +7,7 @@ import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
 import com.soundsonic.simplemensa.ui.main.viewmodel.CanteenViewModel
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 
 @Module
 object CanteenFragmentModule {
@@ -25,6 +26,7 @@ object CanteenFragmentModule {
     }
 
     @Provides
+    @Named("CanteenFM")
     fun supportFragmentManager(canteenFragment: CanteenFragment) =
         canteenFragment.activity!!.supportFragmentManager
 }

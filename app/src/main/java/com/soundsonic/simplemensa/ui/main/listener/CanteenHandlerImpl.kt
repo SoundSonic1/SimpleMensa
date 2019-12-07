@@ -6,9 +6,10 @@ import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.ui.meals.fragment.TabFragment
 import com.soundsonic.simplemensa.util.replaceFragment
 import javax.inject.Inject
+import javax.inject.Named
 
 class CanteenHandlerImpl @Inject constructor(
-    private val fm: FragmentManager
+    @Named("CanteenFM") private val fm: FragmentManager
 ) : CanteenHandler {
 
     override fun onCanteenClicked(canteen: Canteen) {

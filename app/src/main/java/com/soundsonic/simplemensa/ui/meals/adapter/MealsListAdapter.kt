@@ -4,16 +4,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.soundsonic.simplemensa.data.model.Meal
+import com.soundsonic.simplemensa.ui.meals.listener.MealHandler
 import javax.inject.Inject
 
-class MealsListAdapter @Inject constructor() : ListAdapter<Meal, MealViewHolder>(MEAL_DIFF) {
+class MealsListAdapter @Inject constructor(
+    private val mealHandler: MealHandler
+) : ListAdapter<Meal, MealViewHolder>(MEAL_DIFF) {
 
     override fun onBindViewHolder(holder: MealViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealViewHolder {
-        return MealViewHolder(parent)
+        return MealViewHolder(parent, mealHandler)
     }
 
     companion object {
