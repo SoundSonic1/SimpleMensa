@@ -15,7 +15,8 @@
         android:layout_margin="2dp"
         android:onClick="@{() -> mealHandler.onMealClicked(meal)}"
         app:cardCornerRadius="4dp"
-        app:cardElevation="4dp">
+        app:cardElevation="4dp"
+        style="@style/CardViewStyle">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

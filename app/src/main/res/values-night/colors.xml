@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorDarkGey">#121212</color>
-
     <color name="colorPrimary">#BB86FC</color>
     <color name="colorPrimaryDark">@color/colorDarkGey</color>
     <color name="colorAccent">#FF3F80</color>
 
-    <color name="colorBackground">@android:color/background_light</color>
-    <color name="colorCardViewBackground">@android:color/background_light</color>
+    <color name="colorBackground">@color/colorDarkGey</color>
+    <color name="colorCardViewBackground">#232323</color>
 </resources>

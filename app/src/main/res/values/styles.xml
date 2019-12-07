@@ -4,11 +4,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
     </style>
 
     <style name="ToolBarStyle" parent="Theme.AppCompat">
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:background">@color/colorDarkGey</item>
+    </style>
+
+    <style name="CardViewStyle" parent="CardView">
+        <item name="cardBackgroundColor">@color/colorCardViewBackground</item>
     </style>
 
 </resources>
