@@ -1,17 +1,20 @@
 package com.soundsonic.simplemensa.repositories
 
+import com.soundsonic.simplemensa.data.database.CanteenDao
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.data.repositories.CanteenRepository
 import com.soundsonic.simplemensa.data.repositories.CanteenRepositoryImpl
 import com.soundsonic.simplemensa.util.provideApi
 import com.soundsonic.simplemensa.util.provideMockApi
+import com.soundsonic.simplemensa.util.provideMockCanteenDao
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class CanteenRepositoryTest {
 
-    private val repo: CanteenRepository = CanteenRepositoryImpl(provideApi())
+    private val repo: CanteenRepository =
+        CanteenRepositoryImpl(provideApi(), provideMockCanteenDao())
 
     @Test
     fun `fetch canteens`() {
@@ -39,7 +42,7 @@ class CanteenRepositoryTest {
 
     @Test
     fun `wrong endpoint`() {
-        val mockRepo = CanteenRepositoryImpl(provideMockApi())
+        val mockRepo = CanteenRepositoryImpl(provideMockApi(), provideMockCanteenDao())
         runBlocking {
             assertTrue(mockRepo.getCanteens().isEmpty())
         }
