@@ -21,6 +21,8 @@ class MainActivity : DaggerAppCompatActivity() {
 
         setSupportActionBar(toolbarMain)
 
-        replaceFragmentNoBackStack(supportFragmentManager, R.id.mainContent, CanteenFragment())
+        if (savedInstanceState == null) {
+            replaceFragmentNoBackStack(supportFragmentManager, R.id.mainContent, CanteenFragment())
+        }
     }
 }
