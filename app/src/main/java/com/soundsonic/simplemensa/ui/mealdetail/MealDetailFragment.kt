@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import com.soundsonic.simplemensa.R
@@ -37,5 +38,12 @@ class MealDetailFragment : DaggerFragment() {
         binding.meal = meal
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        meal.category?.let {
+            (activity as AppCompatActivity).supportActionBar?.title = it
+        }
     }
 }
