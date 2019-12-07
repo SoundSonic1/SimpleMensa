@@ -1,6 +1,9 @@
 package com.soundsonic.simplemensa.ui.base
 
+import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
@@ -34,6 +37,21 @@ object BindingAdapter {
     @JvmStatic
     @BindingAdapter("setImage")
     fun setImage(imageView: ImageView, image: String?) = image?.let {
-        imageView.load(it)
+        imageView.load(it) {
+            crossfade(true)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("mealNotes")
+    fun setNotes(textView: TextView, notes: List<String>?) {
+        if (notes == null) {
+            textView.visibility = View.GONE
+            return
+        }
+        val bulletListText = notes.joinToString("<br/>") { note ->
+            "&#8226; $note"
+        }
+        textView.text = HtmlCompat.fromHtml(bulletListText, HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 }
