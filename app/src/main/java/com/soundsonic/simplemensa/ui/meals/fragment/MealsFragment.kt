@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,14 +14,12 @@ import com.soundsonic.simplemensa.databinding.MealsFragmentBinding
 import com.soundsonic.simplemensa.ui.meals.adapter.MealsListAdapter
 import com.soundsonic.simplemensa.ui.meals.viewmodel.MealsViewModel
 import com.soundsonic.simplemensa.util.Constants.CANTEEN_KEY
+import com.soundsonic.simplemensa.util.Constants.DATE_KEY
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.meals_fragment.*
 
 class MealsFragment : DaggerFragment() {
-
-    @Inject
-    lateinit var canteen: Canteen
 
     @Inject
     lateinit var viewModel: MealsViewModel
@@ -56,18 +53,11 @@ class MealsFragment : DaggerFragment() {
             layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = customItemAnimator
         }
-
-        (activity as AppCompatActivity).supportActionBar?.title = canteen.name
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
     }
 
     companion object {
-        fun newInstance(canteen: Canteen) = MealsFragment().apply {
-            arguments = bundleOf(CANTEEN_KEY to canteen)
+        fun newInstance(canteen: Canteen, date: String) = MealsFragment().apply {
+            arguments = bundleOf(CANTEEN_KEY to canteen, DATE_KEY to date)
         }
     }
 }

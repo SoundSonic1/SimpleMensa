@@ -2,6 +2,7 @@ package com.soundsonic.simplemensa.di
 
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
 import com.soundsonic.simplemensa.ui.meals.fragment.MealsFragment
+import com.soundsonic.simplemensa.ui.meals.fragment.TabFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -17,4 +18,7 @@ abstract class FragmentsBindingModule {
 
     @ContributesAndroidInjector(modules = [MealsFragmentModule::class, RepositoryModule::class])
     abstract fun mealsFragment(): MealsFragment
+
+    @ContributesAndroidInjector(modules = [TabFragmentModule::class])
+    abstract fun tabFragment(): TabFragment
 }

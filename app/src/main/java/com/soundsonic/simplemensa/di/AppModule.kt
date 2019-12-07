@@ -9,6 +9,8 @@ import com.soundsonic.simplemensa.data.api.OpenMensaApi
 import com.soundsonic.simplemensa.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
+import java.text.SimpleDateFormat
+import java.util.Locale
 import javax.inject.Singleton
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator
 import retrofit2.Retrofit
@@ -41,4 +43,7 @@ object AppModule {
         moveDuration = 300
         changeDuration = 300
     }
+
+    @Provides
+    fun provideSimpleDateFormat() = SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY)
 }
