@@ -11,13 +11,21 @@
         android:layout_height="match_parent"
         tools:context=".ui.meals.fragment.MealsFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewMeals"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:meals="@{viewModel.meals}">
+            app:onRefreshListener="@{() -> viewModel.reloadMeals()}"
+            app:refreshing="@{viewModel.isLoading()}">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMeals"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:meals="@{viewModel.meals}">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </FrameLayout>
 </layout>

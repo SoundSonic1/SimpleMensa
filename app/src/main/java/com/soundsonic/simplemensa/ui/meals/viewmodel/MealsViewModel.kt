@@ -12,13 +12,27 @@ class MealsViewModel(
     private val mealsRepository: MealsRepository,
     private val date: String
 ) : ViewModel() {
+
+    private val _isLoading = MutableLiveData<Boolean>(false)
+
     private val _meals: MutableLiveData<List<Meal>> by lazy {
         MutableLiveData<List<Meal>>().also {
             viewModelScope.launch {
+                _isLoading.value = true
                 it.value = mealsRepository.getMeals(date)
+                _isLoading.value = false
             }
         }
     }
 
+    val isLoading: LiveData<Boolean> get() = _isLoading
     val meals: LiveData<List<Meal>> get() = _meals
+
+    fun reloadMeals() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _meals.value = mealsRepository.getMeals(date)
+            _isLoading.value = false
+        }
+    }
 }
