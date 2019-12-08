@@ -7,6 +7,6 @@
     <string name="navigation_drawer_close">Close</string>
     <string name="menu_home">Homepage</string>
     <string name="menu_map">Map</string>
-    <string name="mensa_name">Alte Mensa</string>
+    <string name="mensa_name">Old Mensa</string>
     <string name="mensa_address">Mommsenstr. 13, 01069 Dresden</string>
 </resources>

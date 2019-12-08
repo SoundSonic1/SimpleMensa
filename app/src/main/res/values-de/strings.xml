@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SimpleMensa</string>
+    <string name="nav_header_desc">Primäricon</string>
+    <string name="nav_header_title">@string/app_name</string>
+    <string name="nav_header_subtitle">Keep it simple.</string>
+    <string name="navigation_drawer_open">Offen</string>
+    <string name="navigation_drawer_close">Geschlossen</string>
+    <string name="menu_home">Hauptseite</string>
+    <string name="menu_map">Karte</string>
+    <string name="mensa_name">Alte Mensa</string>
+    <string name="mensa_address">Mommsenstr. 13, 01069 Dresden</string>
+</resources>
