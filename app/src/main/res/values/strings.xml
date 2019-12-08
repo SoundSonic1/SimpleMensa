@@ -9,4 +9,6 @@
     <string name="menu_map">Map</string>
     <string name="mensa_name">Old Mensa</string>
     <string name="mensa_address">Mommsenstr. 13, 01069 Dresden</string>
+    <string name="location_permission_not_granted">Missing permission.</string>
+    <string name="location_explanation">Please grant permission to show canteens in your area.</string>
 </resources>

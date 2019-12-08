@@ -20,6 +20,8 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
+    private val mapFragment by lazy { MapFragment() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -70,10 +72,18 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
                 replaceFragment(supportFragmentManager, R.id.mainContent, CanteenFragment())
             }
             R.id.nav_map -> {
-                replaceFragment(supportFragmentManager, R.id.mainContent, MapFragment())
+                replaceFragment(supportFragmentManager, R.id.mainContent, mapFragment)
             }
         }
         drawerLayoutMain.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        mapFragment.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 }

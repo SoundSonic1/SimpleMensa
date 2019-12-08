@@ -10,4 +10,6 @@
     <string name="menu_map">Karte</string>
     <string name="mensa_name">Alte Mensa</string>
     <string name="mensa_address">Mommsenstr. 13, 01069 Dresden</string>
+    <string name="location_permission_not_granted">Fehlende Berechtigung.</string>
+    <string name="location_explanation">Bitte gewähre die Berechtigungen damit Mensen in deiner Nähe angezeigt werden können.</string>
 </resources>
