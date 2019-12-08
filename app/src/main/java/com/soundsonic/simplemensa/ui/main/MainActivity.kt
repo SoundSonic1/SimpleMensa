@@ -69,10 +69,14 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when (p0.itemId) {
             R.id.nav_home -> {
-                replaceFragment(supportFragmentManager, R.id.mainContent, CanteenFragment())
+                if (visibleFragments().all { it !is CanteenFragment }) {
+                    replaceFragment(supportFragmentManager, R.id.mainContent, CanteenFragment())
+                }
             }
             R.id.nav_map -> {
-                replaceFragment(supportFragmentManager, R.id.mainContent, mapFragment)
+                if (visibleFragments().all { it !is MapFragment }) {
+                    replaceFragment(supportFragmentManager, R.id.mainContent, mapFragment)
+                }
             }
         }
         drawerLayoutMain.closeDrawer(GravityCompat.START)
@@ -85,5 +89,9 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         grantResults: IntArray
     ) {
         mapFragment.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    private fun visibleFragments() = supportFragmentManager.fragments.filter {
+        it.isVisible
     }
 }
