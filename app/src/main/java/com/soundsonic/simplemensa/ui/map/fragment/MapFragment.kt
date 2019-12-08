@@ -1,5 +1,6 @@
 package com.soundsonic.simplemensa.ui.map.fragment
 
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +8,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.mapbox.android.core.location.LocationEngineCallback
+import com.mapbox.android.core.location.LocationEngineResult
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
+import com.mapbox.mapboxsdk.camera.CameraPosition
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
+import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
@@ -16,6 +22,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
 import com.soundsonic.simplemensa.R
+import java.lang.Exception
 import kotlinx.android.synthetic.main.map_fragment.*
 
 class MapFragment : Fragment(), PermissionsListener {
@@ -88,11 +95,34 @@ class MapFragment : Fragment(), PermissionsListener {
                 cameraMode = CameraMode.TRACKING
                 renderMode = RenderMode.COMPASS
             }
+            getLastLocation()
         } else {
             permissionsManager = PermissionsManager(this).apply {
                 requestLocationPermissions(requireActivity())
             }
         }
+    }
+
+    private fun getLastLocation() {
+        map.locationComponent.locationEngine?.getLastLocation(
+            object : LocationEngineCallback<LocationEngineResult> {
+                override fun onSuccess(result: LocationEngineResult?) {
+                    val location = result?.lastLocation ?: return
+                    moveToLocation(location)
+                }
+                override fun onFailure(exception: Exception) {
+                    exception.printStackTrace()
+                }
+            })
+    }
+
+    private fun moveToLocation(location: Location) {
+        val position = CameraPosition.Builder()
+            .target(LatLng(location))
+            .zoom(10.0)
+            .tilt(20.0)
+            .build()
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(position), 1500)
     }
 
     override fun onStart() {
