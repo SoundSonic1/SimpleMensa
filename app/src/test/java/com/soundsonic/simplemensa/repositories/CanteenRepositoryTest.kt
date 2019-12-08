@@ -1,6 +1,5 @@
 package com.soundsonic.simplemensa.repositories
 
-import com.soundsonic.simplemensa.data.database.CanteenDao
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.data.repositories.CanteenRepository
 import com.soundsonic.simplemensa.data.repositories.CanteenRepositoryImpl

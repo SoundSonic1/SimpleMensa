@@ -7,7 +7,6 @@ import com.soundsonic.simplemensa.util.Constants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-
 fun provideMockCanteenDao(): CanteenDao = object : CanteenDao {
 
     override suspend fun deleteAll() {
