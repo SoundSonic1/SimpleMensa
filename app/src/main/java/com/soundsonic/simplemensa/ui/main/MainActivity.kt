@@ -8,6 +8,8 @@ import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
+import com.soundsonic.simplemensa.ui.map.fragment.MapFragment
+import com.soundsonic.simplemensa.util.replaceFragment
 import com.soundsonic.simplemensa.util.replaceFragmentNoBackStack
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -63,6 +65,15 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+        when (p0.itemId) {
+            R.id.nav_home -> {
+                replaceFragment(supportFragmentManager, R.id.mainContent, CanteenFragment())
+            }
+            R.id.nav_map -> {
+                replaceFragment(supportFragmentManager, R.id.mainContent, MapFragment())
+            }
+        }
+        drawerLayoutMain.closeDrawer(GravityCompat.START)
         return true
     }
 }
