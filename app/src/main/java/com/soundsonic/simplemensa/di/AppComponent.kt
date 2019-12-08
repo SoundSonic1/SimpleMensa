@@ -18,7 +18,8 @@ import javax.inject.Singleton
         CanteenFragmentModule::class,
         TabFragmentModule::class,
         MealsFragmentModule::class,
-        MealDetailFragmentModule::class
+        MealDetailFragmentModule::class,
+        MapFragmentModule::class
     ]
 )
 

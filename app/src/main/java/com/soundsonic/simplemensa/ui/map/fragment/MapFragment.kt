@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.mapbox.android.core.location.LocationEngineCallback
 import com.mapbox.android.core.location.LocationEngineResult
 import com.mapbox.android.core.permissions.PermissionsListener
@@ -20,12 +20,20 @@ import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
+import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager
+import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions
 import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
 import com.soundsonic.simplemensa.R
+import com.soundsonic.simplemensa.ui.map.viewmodel.MapViewModel
+import dagger.android.support.DaggerFragment
 import java.lang.Exception
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.map_fragment.*
 
-class MapFragment : Fragment(), PermissionsListener {
+class MapFragment : DaggerFragment(), PermissionsListener {
+
+    @Inject
+    lateinit var mapViewModel: MapViewModel
 
     private lateinit var permissionsManager: PermissionsManager
     private lateinit var map: MapboxMap
@@ -53,9 +61,31 @@ class MapFragment : Fragment(), PermissionsListener {
                 } catch (e: RuntimeException) {
                     e.printStackTrace()
                 }
+
                 enableLocationComponent(style)
+
+                val symbolManager = SymbolManager(mapView, map, style).apply {
+                    iconAllowOverlap = true
+                    iconIgnorePlacement = true
+                }
+                setUpMarkers(symbolManager)
             }
         }
+    }
+
+    private fun setUpMarkers(symbolManager: SymbolManager) {
+        mapViewModel.canteens.observe(viewLifecycleOwner, Observer { canteens ->
+            canteens.forEach { canteen ->
+                symbolManager.create(
+                    SymbolOptions()
+                        .withIconImage(ICON_ID)
+                        .withLatLng(LatLng(canteen.coordinates[0], canteen.coordinates[1]))
+                        .withIconSize(2.0f)
+                        .withTextField(canteen.name)
+                        .withTextOffset(arrayOf(0f, 1.5f))
+                )
+            }
+        })
     }
 
     override fun onRequestPermissionsResult(
@@ -158,5 +188,9 @@ class MapFragment : Fragment(), PermissionsListener {
     override fun onDestroyView() {
         super.onDestroyView()
         mapView.onDestroy()
+    }
+
+    companion object {
+        private const val ICON_ID = "restaurant-11"
     }
 }
