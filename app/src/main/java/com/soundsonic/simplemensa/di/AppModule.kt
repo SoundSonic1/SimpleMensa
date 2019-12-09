@@ -6,10 +6,12 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.soundsonic.simplemensa.data.adapter.MealAdapter
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
 import com.soundsonic.simplemensa.data.database.CanteenDao
 import com.soundsonic.simplemensa.data.database.CanteenDatabase
 import com.soundsonic.simplemensa.util.Constants.BASE_URL
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import java.text.SimpleDateFormat
@@ -34,9 +36,14 @@ object AppModule {
         PreferenceManager.getDefaultSharedPreferences(app)
 
     @Provides
+    fun provideMoshi(mealAdapter: MealAdapter): Moshi {
+        return Moshi.Builder().add(mealAdapter).build()
+    }
+
+    @Provides
     @Singleton
-    fun openMensaApi(): OpenMensaApi = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create())
+    fun openMensaApi(moshi: Moshi): OpenMensaApi = Retrofit.Builder()
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .baseUrl(BASE_URL)
         .build()
         .create(OpenMensaApi::class.java)
