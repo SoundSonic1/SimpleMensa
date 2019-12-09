@@ -3,6 +3,8 @@ package com.soundsonic.simplemensa.util
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
 import com.soundsonic.simplemensa.data.database.CanteenDao
 import com.soundsonic.simplemensa.data.model.Canteen
+import com.soundsonic.simplemensa.data.repositories.CanteenRepository
+import com.soundsonic.simplemensa.data.repositories.CanteenRepositoryImpl
 import com.soundsonic.simplemensa.util.Constants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -33,3 +35,6 @@ fun provideMockApi(): OpenMensaApi =
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
         .create(OpenMensaApi::class.java)
+
+fun provideMockCanteenRepo(): CanteenRepository =
+    CanteenRepositoryImpl(provideApi(), provideMockCanteenDao())
