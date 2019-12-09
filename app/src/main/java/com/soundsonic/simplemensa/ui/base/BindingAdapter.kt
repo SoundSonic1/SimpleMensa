@@ -11,6 +11,8 @@ import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.data.model.Meal
 import com.soundsonic.simplemensa.ui.main.adapter.CanteenListAdapter
 import com.soundsonic.simplemensa.ui.meals.adapter.MealsListAdapter
+import java.text.NumberFormat
+import java.util.Locale
 
 object BindingAdapter {
 
@@ -53,5 +55,19 @@ object BindingAdapter {
             "&#8226; $note"
         }
         textView.text = HtmlCompat.fromHtml(bulletListText, HtmlCompat.FROM_HTML_MODE_LEGACY)
+    }
+
+    @JvmStatic
+    @BindingAdapter("setPrices")
+    fun setPrices(textView: TextView, prices: Map<String, Double>) {
+
+        val numberFormat = NumberFormat.getCurrencyInstance(Locale.GERMANY).apply {
+            maximumFractionDigits = 2
+            minimumFractionDigits = 2
+        }
+
+        textView.text = prices.values.joinToString(" / ") { price ->
+            numberFormat.format(price)
+        }
     }
 }

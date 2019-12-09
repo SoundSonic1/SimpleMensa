@@ -33,6 +33,12 @@
                 android:padding="1dp"
                 android:text="@{meal.name}"
                 />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:setPrices="@{meal.prices}"
+                >
+            </androidx.appcompat.widget.AppCompatTextView>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
