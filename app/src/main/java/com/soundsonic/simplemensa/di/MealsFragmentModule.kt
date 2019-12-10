@@ -16,11 +16,6 @@ import javax.inject.Named
 object MealsFragmentModule {
 
     @Provides
-    @Named("MealFM")
-    fun provideFragmentManager(mealsFragment: MealsFragment) =
-        mealsFragment.activity!!.supportFragmentManager
-
-    @Provides
     fun provideCanteen(mealsFragment: MealsFragment): Canteen =
         mealsFragment.arguments!!.getParcelable(CANTEEN_KEY)!!
 
