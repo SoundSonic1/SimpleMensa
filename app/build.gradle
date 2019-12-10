@@ -137,7 +137,9 @@ jacocoAndroidUnitTestReport {
                  '**/*ViewHolder*.*',
                  '**/*VMFactory*.*',
                  '**/*ListAdapter*.*',
+                 '**/*PagerAdapter*.*',
                  '**/*BindingAdapter*.*',
+                 '**/*HandlerImpl*.*',
                  '**/*Constants*.*',
                  '**/*Module*.*']
 }
