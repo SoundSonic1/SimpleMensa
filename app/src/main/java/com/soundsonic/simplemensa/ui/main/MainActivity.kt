@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
@@ -42,10 +43,12 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         supportFragmentManager.addOnBackStackChangedListener {
             if (supportFragmentManager.backStackEntryCount > 0) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true) // show back button
+                drawerLayoutMain.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 toolbarMain.setNavigationOnClickListener { onBackPressed() }
             } else {
                 // show hamburger
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                drawerLayoutMain.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
                 toggle.syncState()
                 toolbarMain.setNavigationOnClickListener {
                     drawerLayoutMain.openDrawer(GravityCompat.START)
