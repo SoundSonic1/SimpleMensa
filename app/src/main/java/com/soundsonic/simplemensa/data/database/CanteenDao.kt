@@ -15,7 +15,7 @@ interface CanteenDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(canteen: Canteen)
 
-    @Query("SELECT *  FROM Canteen")
+    @Query("SELECT * FROM Canteen")
     suspend fun findAll(): List<Canteen>
 
     @Query("DELETE FROM Canteen")
