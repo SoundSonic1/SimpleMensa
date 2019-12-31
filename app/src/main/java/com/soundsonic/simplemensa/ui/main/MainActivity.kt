@@ -21,8 +21,6 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
-    private val mapFragment by lazy { MapFragment() }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -57,7 +55,9 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         }
 
         if (savedInstanceState == null) {
-            replaceFragmentNoBackStack(supportFragmentManager, R.id.mainContent, CanteenFragment())
+            replaceFragmentNoBackStack(
+                supportFragmentManager, R.id.mainContent, CanteenFragment(), CANTEEN_FRAGMENT_TAG
+            )
         }
     }
 
@@ -73,12 +73,23 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         when (p0.itemId) {
             R.id.nav_home -> {
                 if (visibleFragments().all { it !is CanteenFragment }) {
-                    replaceFragment(supportFragmentManager, R.id.mainContent, CanteenFragment())
+                    val fragment = supportFragmentManager
+                        .findFragmentByTag(CANTEEN_FRAGMENT_TAG) ?: CanteenFragment()
+
+                    replaceFragment(supportFragmentManager, R.id.mainContent, fragment)
                 }
             }
             R.id.nav_map -> {
                 if (visibleFragments().all { it !is MapFragment }) {
-                    replaceFragment(supportFragmentManager, R.id.mainContent, mapFragment)
+                    val fragment =
+                        supportFragmentManager.findFragmentByTag(MAP_FRAGMENT_TAG) ?: MapFragment()
+
+                    replaceFragment(
+                        supportFragmentManager,
+                        R.id.mainContent,
+                        fragment,
+                        MAP_FRAGMENT_TAG
+                    )
                 }
             }
         }
@@ -91,10 +102,16 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        mapFragment.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        val fragment = supportFragmentManager.findFragmentByTag(MAP_FRAGMENT_TAG) as? MapFragment
+        fragment?.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     private fun visibleFragments() = supportFragmentManager.fragments.filter {
         it.isVisible
+    }
+
+    companion object {
+        private const val CANTEEN_FRAGMENT_TAG = "CANTEEN_FRAGMENT_TAG"
+        private const val MAP_FRAGMENT_TAG = "MAP_FRAGMENT_TAG"
     }
 }

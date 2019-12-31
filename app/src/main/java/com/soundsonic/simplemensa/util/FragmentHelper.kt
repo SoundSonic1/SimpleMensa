@@ -2,29 +2,30 @@ package com.soundsonic.simplemensa.util
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
 import com.soundsonic.simplemensa.R
 
 fun replaceFragmentNoBackStack(
     fm: FragmentManager,
     containerViewId: Int,
-    fragment: Fragment
+    fragment: Fragment,
+    tag: String
 ) {
-    fm.beginTransaction().apply {
+    fm.commit {
         setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
-        replace(containerViewId, fragment)
-        commit()
+        replace(containerViewId, fragment, tag)
     }
 }
 
 fun replaceFragment(
     fm: FragmentManager,
     containerViewId: Int,
-    fragment: Fragment
+    fragment: Fragment,
+    tag: String? = null
 ) {
-    fm.beginTransaction().apply {
+    fm.commit {
         setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
-        replace(containerViewId, fragment)
+        replace(containerViewId, fragment, tag)
         addToBackStack(null)
-        commit()
     }
 }
