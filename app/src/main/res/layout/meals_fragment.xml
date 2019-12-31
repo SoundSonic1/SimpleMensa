@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.soundsonic.simplemensa.ui.meals.viewmodel.MealsViewModel" />
@@ -17,13 +18,40 @@
             app:onRefreshListener="@{() -> viewModel.reloadMeals()}"
             app:refreshing="@{viewModel.isLoading()}">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewMeals"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:meals="@{viewModel.meals}">
+                android:layout_height="match_parent">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewMeals"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:meals="@{viewModel.meals}">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <androidx.cardview.widget.CardView
+                    android:visibility="@{viewModel.meals.empty ? View.VISIBLE : View.GONE}"
+                    android:id="@+id/noMealsCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    style="@style/CardViewStyle"
+                    tools:visibility="gone">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/noMealsTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:text="@string/no_meals_today">
+
+                    </androidx.appcompat.widget.AppCompatTextView>
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

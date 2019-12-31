@@ -12,4 +12,5 @@
     <string name="mensa_address">Mommsenstr. 13, 01069 Dresden</string>
     <string name="location_permission_not_granted">Fehlende Berechtigung.</string>
     <string name="location_explanation">Bitte gewähre die Berechtigungen damit Mensen in deiner Nähe angezeigt werden können.</string>
+    <string name="no_meals_today">Heute gibt es kein Essen.</string>
 </resources>

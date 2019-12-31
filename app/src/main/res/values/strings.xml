@@ -11,4 +11,5 @@
     <string name="mensa_address">Mommsenstr. 13, 01069 Dresden</string>
     <string name="location_permission_not_granted">Missing permission.</string>
     <string name="location_explanation">Please grant permission to show canteens in your area.</string>
+    <string name="no_meals_today">There are no meals today.</string>
 </resources>
