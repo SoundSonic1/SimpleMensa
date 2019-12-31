@@ -10,6 +10,8 @@ import com.soundsonic.simplemensa.data.adapter.MealAdapter
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
 import com.soundsonic.simplemensa.data.database.CanteenDao
 import com.soundsonic.simplemensa.data.database.CanteenDatabase
+import com.soundsonic.simplemensa.data.database.UserProfileDao
+import com.soundsonic.simplemensa.data.database.UserProfileDatabase
 import com.soundsonic.simplemensa.util.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -66,4 +68,12 @@ object AppModule {
         CanteenDatabase::class.java,
         "canteen_database"
     ).build().canteenDao()
+
+    @Singleton
+    @Provides
+    fun provideUserProfileDao(app: Application): UserProfileDao = Room.databaseBuilder(
+        app,
+        UserProfileDatabase::class.java,
+        "user_profile_database"
+    ).build().userProfileDao()
 }
