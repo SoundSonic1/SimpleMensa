@@ -14,8 +14,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:onClick="@{() -> canteenHandler.onCanteenClicked(canteen)}"
         android:layout_margin="2dp"
+        android:onClick="@{() -> canteenHandler.onCanteenClicked(canteen)}"
         app:cardCornerRadius="4dp"
         app:cardElevation="2dp"
         style="@style/CardViewStyle"
@@ -33,7 +33,6 @@
                 android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:fitsSystemWindows="true"
                 >
             </androidx.appcompat.widget.AppCompatImageView>
 
@@ -53,6 +52,18 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="@string/mensa_name"
                     />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/favouriteCanteenIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:srcCompat="@drawable/favourite_selectable"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/mensaName"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                </androidx.appcompat.widget.AppCompatImageView>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/mensaAddress"

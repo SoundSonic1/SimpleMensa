@@ -9,6 +9,7 @@ import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.databinding.CanteenItemBinding
 import com.soundsonic.simplemensa.ui.main.listener.CanteenHandler
+import com.soundsonic.simplemensa.util.Constants.CANTEEN_OVERVIEW_URL
 import kotlinx.android.synthetic.main.canteen_item.view.*
 
 class CanteenViewHolder(
@@ -31,10 +32,8 @@ class CanteenViewHolder(
         itemView.canteenImageView.load("$CANTEEN_OVERVIEW_URL$htmlName.jpg") {
             crossfade(true)
         }
-    }
-
-    companion object {
-        private const val CANTEEN_OVERVIEW_URL =
-            "https://static.studentenwerk-dresden.de/mensen/mensen-cafeterien-aussenansichten/"
+        itemView.favouriteCanteenIcon.setOnClickListener {
+            it.isSelected = !it.isSelected
+        }
     }
 }
