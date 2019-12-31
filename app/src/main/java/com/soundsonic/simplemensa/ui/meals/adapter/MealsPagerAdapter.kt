@@ -18,7 +18,7 @@ class MealsPagerAdapter @Inject constructor(
 ) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val calendar = Calendar.getInstance()
-    private val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.GERMANY)
+    private val sdf = SimpleDateFormat("EEE, MMM d", Locale.getDefault())
 
     private val dates = listOf<String>(
         dateFormatOpenMensa.format(calendar.time),
