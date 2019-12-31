@@ -4,6 +4,8 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
 import com.soundsonic.simplemensa.R
@@ -18,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     @Inject
-    lateinit var sharedPreferences: SharedPreferences
+    lateinit var sharedPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,28 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         toggle.syncState()
 
         navViewMain.setNavigationItemSelectedListener(this)
+
+        AppCompatDelegate.setDefaultNightMode(
+            sharedPref.getInt(DARK_THEME_ON, AppCompatDelegate.MODE_NIGHT_NO)
+        )
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            switch_compat_main.isChecked = true
+        }
+
+        switch_compat_main.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                sharedPref.edit {
+                    putInt(DARK_THEME_ON, AppCompatDelegate.MODE_NIGHT_YES)
+                }
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                sharedPref.edit {
+                    putInt(DARK_THEME_ON, AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            }
+        }
 
         supportFragmentManager.addOnBackStackChangedListener {
 
@@ -121,5 +145,6 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     companion object {
         private const val CANTEEN_FRAGMENT_TAG = "CANTEEN_FRAGMENT_TAG"
         private const val MAP_FRAGMENT_TAG = "MAP_FRAGMENT_TAG"
+        private const val DARK_THEME_ON = "DARK_THEME_ON"
     }
 }
