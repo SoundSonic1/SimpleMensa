@@ -16,6 +16,7 @@ import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
 import com.soundsonic.simplemensa.ui.main.viewmodel.UserProfileViewModel
 import com.soundsonic.simplemensa.ui.map.fragment.MapFragment
+import com.soundsonic.simplemensa.util.Constants.DARK_THEME_ON
 import com.soundsonic.simplemensa.util.replaceFragment
 import com.soundsonic.simplemensa.util.replaceFragmentNoBackStack
 import dagger.android.support.DaggerAppCompatActivity
@@ -46,10 +47,6 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         toggle.syncState()
 
         navViewMain.setNavigationItemSelectedListener(this)
-
-        setDefaultNightMode(
-            sharedPref.getInt(DARK_THEME_ON, AppCompatDelegate.MODE_NIGHT_NO)
-        )
 
         if (getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             switch_compat_main.isChecked = true
@@ -158,6 +155,5 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     companion object {
         private const val CANTEEN_FRAGMENT_TAG = "CANTEEN_FRAGMENT_TAG"
         private const val MAP_FRAGMENT_TAG = "MAP_FRAGMENT_TAG"
-        private const val DARK_THEME_ON = "DARK_THEME_ON"
     }
 }

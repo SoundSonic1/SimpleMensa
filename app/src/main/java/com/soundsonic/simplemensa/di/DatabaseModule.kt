@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 @Module
 object DatabaseModule {
 
-    lateinit var userDatabase: UserProfileDatabase
+    private lateinit var userDatabase: UserProfileDatabase
 
     @Singleton
     @Provides
