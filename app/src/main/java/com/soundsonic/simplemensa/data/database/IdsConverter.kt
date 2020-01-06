@@ -12,6 +12,10 @@ object IdsConverter {
     @TypeConverter
     @JvmStatic
     fun convertToSet(ids: String): MutableSet<Int> {
-        return ids.split(delimiter).mapTo(LinkedHashSet()) { it.toInt() }
+        return if (ids.isNotEmpty()) {
+            ids.split(delimiter).mapTo(LinkedHashSet()) { it.toInt() }
+        } else {
+            mutableSetOf()
+        }
     }
 }

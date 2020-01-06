@@ -13,13 +13,9 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         AppModule::class,
+        DatabaseModule::class,
         ActivityBindingModule::class,
-        FragmentsBindingModule::class,
-        CanteenFragmentModule::class,
-        TabFragmentModule::class,
-        MealsFragmentModule::class,
-        MealDetailFragmentModule::class,
-        MapFragmentModule::class
+        FragmentsBindingModule::class
     ]
 )
 

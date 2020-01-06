@@ -7,4 +7,5 @@ object Constants {
     const val MEAL_KEY = "MEAL_KEY"
     const val CANTEEN_OVERVIEW_URL =
         "https://static.studentenwerk-dresden.de/mensen/mensen-cafeterien-aussenansichten/"
+    const val USER_ID = 1
 }

@@ -20,4 +20,9 @@ class IdsConverterTest {
 
         assertEquals(mutableSetOf(1, 3, 4), IdsConverter.convertToSet(string))
     }
+
+    @Test
+    fun `convert to empty set`() {
+        assertEquals(mutableSetOf<Int>(), IdsConverter.convertToSet(""))
+    }
 }

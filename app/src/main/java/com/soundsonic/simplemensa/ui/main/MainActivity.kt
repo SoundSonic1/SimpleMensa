@@ -2,14 +2,19 @@ package com.soundsonic.simplemensa.ui.main
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode
+import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import androidx.core.content.edit
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.Observer
 import com.google.android.material.navigation.NavigationView
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
+import com.soundsonic.simplemensa.ui.main.viewmodel.UserProfileViewModel
 import com.soundsonic.simplemensa.ui.map.fragment.MapFragment
 import com.soundsonic.simplemensa.util.replaceFragment
 import com.soundsonic.simplemensa.util.replaceFragmentNoBackStack
@@ -21,6 +26,9 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
 
     @Inject
     lateinit var sharedPref: SharedPreferences
+
+    @Inject
+    lateinit var userProfileViewModel: UserProfileViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,22 +47,22 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
 
         navViewMain.setNavigationItemSelectedListener(this)
 
-        AppCompatDelegate.setDefaultNightMode(
+        setDefaultNightMode(
             sharedPref.getInt(DARK_THEME_ON, AppCompatDelegate.MODE_NIGHT_NO)
         )
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+        if (getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             switch_compat_main.isChecked = true
         }
 
         switch_compat_main.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 sharedPref.edit {
                     putInt(DARK_THEME_ON, AppCompatDelegate.MODE_NIGHT_YES)
                 }
             } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 sharedPref.edit {
                     putInt(DARK_THEME_ON, AppCompatDelegate.MODE_NIGHT_NO)
                 }
@@ -91,6 +99,11 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
             )
             navViewMain.setCheckedItem(R.id.nav_home)
         }
+        userProfileViewModel.userProfile.observe(this, Observer {
+            it?.let {
+                Log.d("user", it.toString())
+            }
+        })
     }
 
     override fun onBackPressed() {

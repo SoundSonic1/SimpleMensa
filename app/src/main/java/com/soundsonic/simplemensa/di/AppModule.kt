@@ -5,13 +5,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.soundsonic.simplemensa.data.adapter.MealAdapter
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
-import com.soundsonic.simplemensa.data.database.CanteenDao
-import com.soundsonic.simplemensa.data.database.CanteenDatabase
-import com.soundsonic.simplemensa.data.database.UserProfileDao
-import com.soundsonic.simplemensa.data.database.UserProfileDatabase
 import com.soundsonic.simplemensa.util.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -60,20 +55,4 @@ object AppModule {
 
     @Provides
     fun provideSimpleDateFormat() = SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY)
-
-    @Singleton
-    @Provides
-    fun provideCanteenDao(app: Application): CanteenDao = Room.databaseBuilder(
-        app,
-        CanteenDatabase::class.java,
-        "canteen_database"
-    ).build().canteenDao()
-
-    @Singleton
-    @Provides
-    fun provideUserProfileDao(app: Application): UserProfileDao = Room.databaseBuilder(
-        app,
-        UserProfileDatabase::class.java,
-        "user_profile_database"
-    ).build().userProfileDao()
 }
