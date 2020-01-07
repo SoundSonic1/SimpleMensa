@@ -11,6 +11,14 @@ apply plugin: "org.jlleitschuh.gradle.ktlint"
 apply plugin: 'jacoco-android'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('simplemensakey.jks')
+            keyAlias = 'RedFruitKey'
+            storePassword '123456'
+            keyPassword 'qwertzu'
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
@@ -27,8 +35,10 @@ android {
         }
         release {
             buildConfigField 'String', "MAPBOX_TOKEN", MAPBOXTOKEN
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
