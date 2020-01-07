@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.canteen_fragment.*
 class CanteenFragment : DaggerFragment() {
 
     @Inject
-    lateinit var viewModel: CanteenViewModel
+    lateinit var canteenViewModel: CanteenViewModel
 
     @Inject
     lateinit var canteenListAdapter: CanteenListAdapter
@@ -37,7 +37,7 @@ class CanteenFragment : DaggerFragment() {
             DataBindingUtil.inflate(inflater, R.layout.canteen_fragment, container, false)
 
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
+        binding.viewModel = canteenViewModel
 
         return binding.root
     }

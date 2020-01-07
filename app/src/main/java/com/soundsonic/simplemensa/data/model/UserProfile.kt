@@ -6,5 +6,5 @@ import androidx.room.PrimaryKey
 @Entity
 data class UserProfile(
     @PrimaryKey val id: Int,
-    val favouriteCanteenIds: MutableSet<Int> = mutableSetOf()
+    val favouriteCanteenIds: MutableSet<Long> = mutableSetOf()
 )

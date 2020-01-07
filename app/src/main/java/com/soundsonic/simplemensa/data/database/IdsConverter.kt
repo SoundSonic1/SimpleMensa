@@ -7,13 +7,13 @@ object IdsConverter {
 
     @TypeConverter
     @JvmStatic
-    fun convertToString(ids: MutableSet<Int>): String = ids.joinToString(delimiter)
+    fun convertToString(ids: MutableSet<Long>): String = ids.joinToString(delimiter)
 
     @TypeConverter
     @JvmStatic
-    fun convertToSet(ids: String): MutableSet<Int> {
+    fun convertToSet(ids: String): MutableSet<Long> {
         return if (ids.isNotEmpty()) {
-            ids.split(delimiter).mapTo(LinkedHashSet()) { it.toInt() }
+            ids.split(delimiter).mapTo(LinkedHashSet()) { it.toLong() }
         } else {
             mutableSetOf()
         }

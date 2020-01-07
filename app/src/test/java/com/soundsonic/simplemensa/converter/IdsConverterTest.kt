@@ -18,7 +18,7 @@ class IdsConverterTest {
     fun `convert to set`() {
         val string = "1,3,4"
 
-        assertEquals(mutableSetOf(1, 3, 4), IdsConverter.convertToSet(string))
+        assertEquals(mutableSetOf(1L, 3L, 4L), IdsConverter.convertToSet(string))
     }
 
     @Test

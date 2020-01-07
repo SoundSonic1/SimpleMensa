@@ -25,12 +25,30 @@ class UserProfileViewModel(private val userDao: UserProfileDao) : ViewModel() {
 
     val userProfile: LiveData<UserProfile> get() = _userProfile
 
-    fun updateUserProfile(user: UserProfile) {
-        viewModelScope.launch {
-            withContext(Dispatchers.Default) {
-                userDao.insert(user)
+    fun addCanteen(id: Long) {
+        _userProfile.value?.favouriteCanteenIds?.add(id)
+        _userProfile.value = _userProfile.value.also { user ->
+            user?.let {
+                viewModelScope.launch {
+                    withContext(Dispatchers.Default) {
+                        userDao.insert(user)
+                    }
+                }
             }
-            _userProfile.value = user
+        }
+    }
+
+    fun removeCanteen(id: Long) {
+        if (_userProfile.value?.favouriteCanteenIds?.remove(id) == true) {
+            _userProfile.value = _userProfile.value.also { user ->
+                user?.let {
+                    viewModelScope.launch {
+                        withContext(Dispatchers.Default) {
+                            userDao.insert(user)
+                        }
+                    }
+                }
+            }
         }
     }
 }
