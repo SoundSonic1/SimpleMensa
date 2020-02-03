@@ -1,6 +1,9 @@
 package com.soundsonic.simplemensa.ui.main
 
+import android.content.Intent
 import android.content.SharedPreferences
+import android.nfc.NfcAdapter
+import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -17,6 +20,7 @@ import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
 import com.soundsonic.simplemensa.ui.main.viewmodel.UserProfileViewModel
 import com.soundsonic.simplemensa.ui.map.fragment.MapFragment
 import com.soundsonic.simplemensa.util.Constants.DARK_THEME_ON
+import com.soundsonic.simplemensa.util.NfcReader.getValueData
 import com.soundsonic.simplemensa.util.replaceFragment
 import com.soundsonic.simplemensa.util.replaceFragmentNoBackStack
 import dagger.android.support.DaggerAppCompatActivity
@@ -31,12 +35,21 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     @Inject
     lateinit var userProfileViewModel: UserProfileViewModel
 
+    private var nfcAdapter: NfcAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbarMain)
+
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this)
+        nfcAdapter?.let {
+            if (NfcAdapter.ACTION_TECH_DISCOVERED == intent.action) {
+                onNewIntent(intent)
+            }
+        }
 
         val toggle = ActionBarDrawerToggle(
             this, drawerLayoutMain, toolbarMain,
@@ -146,6 +159,16 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     ) {
         val fragment = supportFragmentManager.findFragmentByTag(MAP_FRAGMENT_TAG) as? MapFragment
         fragment?.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (NfcAdapter.ACTION_TECH_DISCOVERED == intent?.action) {
+            val tag: Tag? = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG)
+            tag?.let {
+                getValueData(tag)
+            }
+        }
     }
 
     private fun visibleFragments() = supportFragmentManager.fragments.filter {
