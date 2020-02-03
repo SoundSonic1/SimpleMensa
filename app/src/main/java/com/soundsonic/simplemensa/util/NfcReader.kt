@@ -18,7 +18,7 @@ object NfcReader {
         }
         try {
             val desfireProtocol = DesfireProtocol(tech)
-            data = Readers.getInstance().readCard(desfireProtocol)
+            data = Readers.instance?.readCard(desfireProtocol)
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {

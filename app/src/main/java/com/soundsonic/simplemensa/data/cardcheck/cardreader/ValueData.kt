@@ -1,5 +1,5 @@
 /*
- * ICardReader.java
+ * ValueData.kt
  *
  * Copyright (C) 2014 Jakob Wenzel
  *
@@ -19,23 +19,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package com.soundsonic.simplemensa.data.cardcheck.cardreader
 
-package com.soundsonic.simplemensa.data.cardcheck.cardreader;
+import java.io.Serializable
 
+/**
+ * Stores Data read from a card
+ */
+class ValueData : Serializable {
+    /**
+     * Current value on card, in tenths of Euro cents.
+     */
+    var value = 0
+    /**
+     * Last transaction, in tenths of Euro cents. null if not supported by card.
+     */
+    var lastTransaction: Int? = null
 
-import com.soundsonic.simplemensa.data.cardcheck.card.desfire.DesfireException;
-import com.soundsonic.simplemensa.data.cardcheck.card.desfire.DesfireProtocol;
+    constructor(value: Int, lastTransaction: Int?) {
+        this.value = value
+        this.lastTransaction = lastTransaction
+    }
 
-public interface ICardReader {
-	/**
-	 * Try to read data from a card.
-	 *
-	 * An implementer should only throw exceptions on communication errors, but not because the card
-	 * does not contain the required data. In that case, null should be returned.
-	 *
-	 * @param card The card to read
-	 * @return Card's data, null if unsupported.
-	 * @throws DesfireException Communication error
-	 */
-	public ValueData readCard(DesfireProtocol card) throws DesfireException;
+    constructor() {}
 }

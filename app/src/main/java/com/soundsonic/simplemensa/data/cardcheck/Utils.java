@@ -94,7 +94,7 @@ public class Utils {
         if ((s.length() % 2) != 0) {
             throw new IllegalArgumentException("Bad input string: " + s);
         }
-        
+
         int len = s.length();
         byte[] data = new byte[len / 2];
         for (int i = 0; i < len; i += 2) {
@@ -113,15 +113,15 @@ public class Utils {
                 (byte)value};
     }
     */
-    
+
     public static int byteArrayToInt(byte[] b) {
         return byteArrayToInt(b, 0);
     }
-    
+
     private static int byteArrayToInt(byte[] b, int offset) {
         return byteArrayToInt(b, offset, b.length);
     }
-    
+
     private static int byteArrayToInt(byte[] b, int offset, int length) {
         return (int) byteArrayToLong(b, offset, length);
     }
