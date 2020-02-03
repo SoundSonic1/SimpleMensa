@@ -22,7 +22,6 @@ import org.junit.jupiter.api.extension.ExtendWith
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-
 @ExperimentalCoroutinesApi
 @ObsoleteCoroutinesApi
 @ExtendWith(InstantExecutorExtension::class)
