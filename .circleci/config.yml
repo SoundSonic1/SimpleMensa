@@ -24,6 +24,12 @@ jobs:
           name: Run unit tests
           command: ./gradlew testDebugUnitTest
       - run:
+          name: Build debug APK and test APK
+          command: |
+            ./gradlew :app:assembleDebug
+            ./gradlew :app:assembleDebugAndroidTest
+
+      - run:
           name: Run jacocoTest
           command: ./gradlew jacocoTestDebugUnitTestReport
       - run:
