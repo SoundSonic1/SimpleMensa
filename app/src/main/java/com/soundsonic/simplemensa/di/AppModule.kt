@@ -3,6 +3,8 @@ package com.soundsonic.simplemensa.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.nfc.NfcAdapter
+import androidx.annotation.Nullable
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.soundsonic.simplemensa.data.adapter.MealAdapter
@@ -31,6 +33,11 @@ object AppModule {
     @Singleton
     fun provideSharedPreference(app: Application): SharedPreferences =
         PreferenceManager.getDefaultSharedPreferences(app)
+
+    @Provides
+    @Singleton
+    @Nullable
+    fun provideNfcAdapter(app: Application) = NfcAdapter.getDefaultAdapter(app)
 
     @Provides
     fun provideMoshi(mealAdapter: MealAdapter): Moshi {

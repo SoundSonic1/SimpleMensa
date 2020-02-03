@@ -162,5 +162,6 @@ jacocoAndroidUnitTestReport {
                  '**/*BindingAdapter*.*',
                  '**/*HandlerImpl*.*',
                  '**/*Constants*.*',
-                 '**/*Module*.*']
+                 '**/*Module*.*',
+                 '**/cardcheck/*']
 }

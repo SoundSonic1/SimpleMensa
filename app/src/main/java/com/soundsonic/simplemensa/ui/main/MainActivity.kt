@@ -7,6 +7,7 @@ import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.annotation.Nullable
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode
@@ -16,6 +17,8 @@ import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.navigation.NavigationView
 import com.soundsonic.simplemensa.R
+import com.soundsonic.simplemensa.ui.emeal.EmealFragment
+import com.soundsonic.simplemensa.ui.emeal.EmealViewModel
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
 import com.soundsonic.simplemensa.ui.main.viewmodel.UserProfileViewModel
 import com.soundsonic.simplemensa.ui.map.fragment.MapFragment
@@ -35,7 +38,11 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     @Inject
     lateinit var userProfileViewModel: UserProfileViewModel
 
-    private var nfcAdapter: NfcAdapter? = null
+    @Inject
+    lateinit var emealViewModel: EmealViewModel
+
+    @Nullable
+    var nfcAdapter: NfcAdapter? = null @Inject set
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,13 +50,6 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbarMain)
-
-        nfcAdapter = NfcAdapter.getDefaultAdapter(this)
-        nfcAdapter?.let {
-            if (NfcAdapter.ACTION_TECH_DISCOVERED == intent.action) {
-                onNewIntent(intent)
-            }
-        }
 
         val toggle = ActionBarDrawerToggle(
             this, drawerLayoutMain, toolbarMain,
@@ -116,6 +116,15 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         })
     }
 
+    override fun onStart() {
+        super.onStart()
+        nfcAdapter?.let {
+            if (NfcAdapter.ACTION_TECH_DISCOVERED == intent.action) {
+                onNewIntent(intent)
+            }
+        }
+    }
+
     override fun onBackPressed() {
         if (drawerLayoutMain.isDrawerOpen(GravityCompat.START)) {
             drawerLayoutMain.closeDrawer(GravityCompat.START)
@@ -166,7 +175,12 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         if (NfcAdapter.ACTION_TECH_DISCOVERED == intent?.action) {
             val tag: Tag? = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG)
             tag?.let {
-                getValueData(tag)
+                getValueData(tag)?.let {
+                    emealViewModel.updateData(it)
+                    replaceFragment(
+                        supportFragmentManager, R.id.mainContent, EmealFragment()
+                    )
+                }
             }
         }
     }

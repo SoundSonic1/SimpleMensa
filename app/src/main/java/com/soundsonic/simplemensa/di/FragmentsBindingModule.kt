@@ -1,5 +1,6 @@
 package com.soundsonic.simplemensa.di
 
+import com.soundsonic.simplemensa.ui.emeal.EmealFragment
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
 import com.soundsonic.simplemensa.ui.map.fragment.MapFragment
 import com.soundsonic.simplemensa.ui.mealdetail.MealDetailFragment
@@ -33,4 +34,7 @@ abstract class FragmentsBindingModule {
 
     @ContributesAndroidInjector(modules = [MapFragmentModule::class, RepositoryModule::class])
     abstract fun mapFragment(): MapFragment
+
+    @ContributesAndroidInjector(modules = [EmealFragmentModule::class])
+    abstract fun emealFragment(): EmealFragment
 }
