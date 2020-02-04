@@ -12,6 +12,10 @@
                 android:id="@+id/nav_map"
                 android:icon="@drawable/ic_pin_24dp"
                 android:title="@string/menu_map"/>
+        <item
+            android:id="@+id/nav_balance"
+            android:icon="@drawable/ic_pay_24dp"
+            android:title="@string/menu_balance"/>
     </group>
 
 </menu>

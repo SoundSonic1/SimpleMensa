@@ -1,4 +1,4 @@
-package com.soundsonic.simplemensa.repositories
+package com.soundsonic.simplemensa.database
 
 import android.content.Context
 import androidx.room.Room

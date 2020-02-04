@@ -24,6 +24,18 @@ jobs:
           name: Run unit tests
           command: ./gradlew testDebugUnitTest
       - run:
+          name: Run Android lint tool
+          command: ./gradlew lintDebug
+      - run:
+          name: Run klintCheck
+          command: ./gradlew ktlintCheck
+      - run:
+          name: Run jacocoTest
+          command: ./gradlew jacocoTestDebugUnitTestReport
+      - run:
+          name: Upload to codecov
+          command: bash <(curl -s https://codecov.io/bash) -t a6b8afd6-1ed4-4e8c-9a21-7ced0f83ba36
+      - run:
           name: Build debug APK and test APK
           command: |
             ./gradlew :app:assembleDebug
@@ -43,18 +55,6 @@ jobs:
             sudo gcloud firebase test android run \
               --app app/build/outputs/apk/debug/app-debug.apk \
               --test app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-      - run:
-          name: Run jacocoTest
-          command: ./gradlew jacocoTestDebugUnitTestReport
-      - run:
-          name: Upload to codecov
-          command: bash <(curl -s https://codecov.io/bash) -t a6b8afd6-1ed4-4e8c-9a21-7ced0f83ba36
-      - run:
-          name: Run Android lint tool
-          command: ./gradlew lintDebug
-      - run:
-          name: Run klintCheck
-          command: ./gradlew --continue ktlintCheck
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports

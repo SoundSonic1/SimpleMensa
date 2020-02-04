@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.databinding.EmealFragmentBinding
@@ -27,5 +28,10 @@ class EmealFragment : DaggerFragment() {
         binding.viewModel = viewModel
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.menu_balance)
     }
 }

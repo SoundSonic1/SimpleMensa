@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.soundsonic.simplemensa.ui.emeal.EmealViewModel" />
@@ -11,10 +12,43 @@
         android:layout_height="match_parent"
         tools:context=".ui.emeal.EmealFragment">
 
-        <TextView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{String.valueOf(viewModel.valueData.value)}"
-            tools:text="3.50"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:visibility="@{viewModel.balance == null ? View.GONE : View.VISIBLE}"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            style="@style/CardViewStyle"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:text="@{@string/your_balance + ` ` +  viewModel.balance + `€`}"
+                tools:text="Your balance: 3.50€"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:visibility="@{viewModel.balance != null ? View.GONE : View.VISIBLE}"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            style="@style/CardViewStyle"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:text="@string/set_up_emeal"
+                tools:visibility="gone"
+                />
+        </androidx.cardview.widget.CardView>
+
     </FrameLayout>
 </layout>

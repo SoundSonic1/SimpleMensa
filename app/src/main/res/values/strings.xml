@@ -7,9 +7,12 @@
     <string name="navigation_drawer_close">Close</string>
     <string name="menu_home">Homepage</string>
     <string name="menu_map">Map</string>
+    <string name="menu_balance">Balance</string>
     <string name="mensa_name">Old Mensa</string>
     <string name="mensa_address">Mommsenstr. 13, 01069 Dresden</string>
     <string name="location_permission_not_granted">Missing permission.</string>
     <string name="location_explanation">Please grant permission to show canteens in your area.</string>
     <string name="no_meals_today">There are no meals today.</string>
+    <string name="your_balance">Your balance:</string>
+    <string name="set_up_emeal">Turn on NFC and hold your Emeal card on your smartphone.</string>
 </resources>

@@ -2,6 +2,7 @@ package com.soundsonic.simplemensa.view
 
 import android.view.Gravity
 import androidx.test.core.app.ActivityScenario
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
@@ -30,7 +31,7 @@ class MainActivityTest {
         )
 
     @Test
-    fun navigateToMap() {
+    fun navigateThroughDrawer() {
         ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.drawerLayoutMain))
             .check(matches(isClosed(Gravity.LEFT)))
@@ -39,5 +40,14 @@ class MainActivityTest {
 
         Thread.sleep(WAITING_TIME)
         onView(withId(R.id.toolbarMain)).check(matches(hasDescendant(withText(R.string.menu_map))))
+
+        Espresso.pressBack()
+
+        onView(withId(R.id.drawerLayoutMain))
+            .check(matches(isClosed(Gravity.LEFT)))
+            .perform(DrawerActions.open())
+        onView(withId(R.id.navViewMain)).perform(NavigationViewActions.navigateTo(R.id.nav_balance))
+        onView(withId(R.id.toolbarMain))
+            .check(matches(hasDescendant(withText(R.string.menu_balance))))
     }
 }

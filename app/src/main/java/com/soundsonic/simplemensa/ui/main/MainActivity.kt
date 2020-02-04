@@ -1,9 +1,13 @@
 package com.soundsonic.simplemensa.ui.main
 
+import android.app.PendingIntent
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.nfc.NfcAdapter
 import android.nfc.Tag
+import android.nfc.tech.IsoDep
+import android.nfc.tech.NfcA
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -43,6 +47,8 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
 
     @Nullable
     var nfcAdapter: NfcAdapter? = null @Inject set
+
+    private lateinit var pendingIntent: PendingIntent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +94,9 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
                 is MapFragment -> {
                     navViewMain.setCheckedItem(R.id.nav_map)
                 }
+                is EmealFragment -> {
+                    navViewMain.setCheckedItem(R.id.nav_balance)
+                }
             }
 
             if (supportFragmentManager.backStackEntryCount > 0) {
@@ -114,15 +123,35 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
                 Log.d("user", it.toString())
             }
         })
+
+        val customIntent = Intent(this, javaClass).apply {
+            addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        }
+        pendingIntent = PendingIntent.getActivity(this, 0, customIntent, 0)
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
+
         nfcAdapter?.let {
             if (NfcAdapter.ACTION_TECH_DISCOVERED == intent.action) {
                 onNewIntent(intent)
             }
         }
+
+        val tech = IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED)
+        val intentFiltersArray = arrayOf(tech)
+        val techListsArray =
+            arrayOf(arrayOf(IsoDep::class.java.name, NfcA::class.java.name))
+
+        nfcAdapter?.enableForegroundDispatch(
+            this, pendingIntent, intentFiltersArray, techListsArray
+        )
+    }
+
+    override fun onPause() {
+        super.onPause()
+        nfcAdapter?.disableForegroundDispatch(this)
     }
 
     override fun onBackPressed() {
@@ -156,6 +185,19 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
                     )
                 }
             }
+            R.id.nav_balance -> {
+                if (visibleFragments().all { it !is EmealFragment }) {
+                    val fragment = supportFragmentManager
+                        .findFragmentByTag(EMEAL_FRAGMENT_TAG) ?: EmealFragment()
+
+                    replaceFragment(
+                        supportFragmentManager,
+                        R.id.mainContent,
+                        fragment,
+                        EMEAL_FRAGMENT_TAG
+                    )
+                }
+            }
         }
         drawerLayoutMain.closeDrawer(GravityCompat.START)
         return true
@@ -177,8 +219,10 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
             tag?.let {
                 getValueData(tag)?.let {
                     emealViewModel.updateData(it)
+                    val fragment = supportFragmentManager
+                        .findFragmentByTag(EMEAL_FRAGMENT_TAG) ?: EmealFragment()
                     replaceFragment(
-                        supportFragmentManager, R.id.mainContent, EmealFragment()
+                        supportFragmentManager, R.id.mainContent, fragment
                     )
                 }
             }
@@ -192,5 +236,6 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     companion object {
         private const val CANTEEN_FRAGMENT_TAG = "CANTEEN_FRAGMENT_TAG"
         private const val MAP_FRAGMENT_TAG = "MAP_FRAGMENT_TAG"
+        private const val EMEAL_FRAGMENT_TAG = "EMEAL_FRAGMENT_TAG"
     }
 }
