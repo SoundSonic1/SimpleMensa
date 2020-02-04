@@ -37,7 +37,7 @@ object AppModule {
     @Provides
     @Singleton
     @Nullable
-    fun provideNfcAdapter(app: Application) = NfcAdapter.getDefaultAdapter(app)
+    fun provideNfcAdapter(app: Application): NfcAdapter? = NfcAdapter.getDefaultAdapter(app)
 
     @Provides
     fun provideMoshi(mealAdapter: MealAdapter): Moshi {

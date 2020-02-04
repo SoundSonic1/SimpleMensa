@@ -48,7 +48,8 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     @Nullable
     var nfcAdapter: NfcAdapter? = null @Inject set
 
-    private lateinit var pendingIntent: PendingIntent
+    @Inject
+    lateinit var pendingIntent: PendingIntent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,11 +124,6 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
                 Log.d("user", it.toString())
             }
         })
-
-        val customIntent = Intent(this, javaClass).apply {
-            addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        }
-        pendingIntent = PendingIntent.getActivity(this, 0, customIntent, 0)
     }
 
     override fun onResume() {
@@ -139,13 +135,11 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
             }
         }
 
-        val tech = IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED)
-        val intentFiltersArray = arrayOf(tech)
-        val techListsArray =
-            arrayOf(arrayOf(IsoDep::class.java.name, NfcA::class.java.name))
-
         nfcAdapter?.enableForegroundDispatch(
-            this, pendingIntent, intentFiltersArray, techListsArray
+            this,
+            pendingIntent,
+            arrayOf(IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED)),
+            arrayOf(arrayOf(IsoDep::class.java.name, NfcA::class.java.name))
         )
     }
 
