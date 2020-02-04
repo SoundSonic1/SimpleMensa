@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="meal"
@@ -25,18 +26,26 @@
             android:background="?android:attr/selectableItemBackground"
             >
             <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{meal.category}"
+                tools:text="Meal 1">
+
+            </androidx.appcompat.widget.AppCompatTextView>
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/mealName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                android:padding="1dp"
                 android:text="@{meal.name}"
+                tools:text="Mom's Spaghetti"
                 />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:setPrices="@{meal.prices}"
+                tools:text="3,50€/5,40€"
                 >
             </androidx.appcompat.widget.AppCompatTextView>
         </LinearLayout>
