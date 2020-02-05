@@ -26,8 +26,8 @@
                 android:layout_height="match_parent"
                 android:textSize="20sp"
                 android:padding="5dp"
-                android:text="@{@string/your_balance + ` ` +  viewModel.balance + `€`}"
-                tools:text="Your balance: 3.50€"
+                android:text="@{@string/your_balance + ` ` +  viewModel.balance}"
+                tools:text="Your balance: 3.50 €"
                 />
         </androidx.cardview.widget.CardView>
 

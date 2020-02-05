@@ -11,8 +11,7 @@ import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.data.model.Meal
 import com.soundsonic.simplemensa.ui.main.adapter.CanteenListAdapter
 import com.soundsonic.simplemensa.ui.meals.adapter.MealsListAdapter
-import java.text.NumberFormat
-import java.util.Locale
+import com.soundsonic.simplemensa.util.Formatter.euroCurrency
 
 object BindingAdapter {
 
@@ -61,13 +60,8 @@ object BindingAdapter {
     @BindingAdapter("setPrices")
     fun setPrices(textView: TextView, prices: Map<String, Double>) {
 
-        val numberFormat = NumberFormat.getCurrencyInstance(Locale.GERMANY).apply {
-            maximumFractionDigits = 2
-            minimumFractionDigits = 2
-        }
-
         textView.text = prices.values.joinToString(" / ") { price ->
-            numberFormat.format(price)
+            euroCurrency.format(price)
         }
     }
 }
