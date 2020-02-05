@@ -50,6 +50,10 @@ object DatabaseModule {
             }
         }).build()
 
+        CoroutineScope(Dispatchers.IO).launch {
+            userDatabase.userProfileDao().findUserById(USER_ID)
+        }
+
         return userDatabase
     }
 
