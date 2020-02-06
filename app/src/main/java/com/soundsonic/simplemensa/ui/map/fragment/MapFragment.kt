@@ -102,12 +102,7 @@ class MapFragment : DaggerFragment(), PermissionsListener {
                 enableLocationComponent(it)
             }
         } else {
-            Toast.makeText(
-                requireContext(),
-                R.string.location_permission_not_granted,
-                Toast.LENGTH_LONG
-            ).show()
-            activity?.finish()
+            activity?.supportFragmentManager?.popBackStack()
         }
     }
 
