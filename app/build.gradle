@@ -40,6 +40,7 @@ android {
     buildTypes {
         debug {
             buildConfigField 'String', "MAPBOX_TOKEN", MAPBOXTOKEN
+            testCoverageEnabled true
         }
         release {
             buildConfigField 'String', "MAPBOX_TOKEN", MAPBOXTOKEN
