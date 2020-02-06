@@ -100,17 +100,7 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
                 }
             }
 
-            if (supportFragmentManager.backStackEntryCount > 0) {
-                supportActionBar?.setDisplayHomeAsUpEnabled(true) // show back button
-                toolbarMain.setNavigationOnClickListener { onBackPressed() }
-            } else {
-                // show hamburger
-                supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                toggle.syncState()
-                toolbarMain.setNavigationOnClickListener {
-                    drawerLayoutMain.openDrawer(GravityCompat.START)
-                }
-            }
+            setUpToolbarNav(toggle)
         }
 
         if (savedInstanceState == null) {
@@ -118,7 +108,10 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
                 supportFragmentManager, R.id.mainContent, CanteenFragment(), CANTEEN_FRAGMENT_TAG
             )
             navViewMain.setCheckedItem(R.id.nav_home)
+        } else {
+            setUpToolbarNav(toggle)
         }
+
         userProfileViewModel.userProfile.observe(this, Observer {
             it?.let {
                 Log.d("user", it.toString())
@@ -225,6 +218,20 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
 
     private fun visibleFragments() = supportFragmentManager.fragments.filter {
         it.isVisible
+    }
+
+    private fun setUpToolbarNav(toggle: ActionBarDrawerToggle) {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true) // show back button
+            toolbarMain.setNavigationOnClickListener { onBackPressed() }
+        } else {
+            // show hamburger
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            toggle.syncState()
+            toolbarMain.setNavigationOnClickListener {
+                drawerLayoutMain.openDrawer(GravityCompat.START)
+            }
+        }
     }
 
     companion object {

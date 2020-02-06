@@ -5,11 +5,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.nfc.NfcAdapter
 import androidx.annotation.Nullable
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.soundsonic.simplemensa.data.adapter.MealAdapter
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
 import com.soundsonic.simplemensa.util.Constants.BASE_URL
+import com.soundsonic.simplemensa.util.Constants.PREFERENCE_FILE_KEY
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -32,7 +32,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideSharedPreference(app: Application): SharedPreferences =
-        PreferenceManager.getDefaultSharedPreferences(app)
+        app.getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE)
 
     @Provides
     @Singleton

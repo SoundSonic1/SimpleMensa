@@ -10,7 +10,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.nextmove.eclever.util.clickOnViewChild
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.ui.main.MainActivity
-import com.soundsonic.simplemensa.util.Constants.WAITING_TIME
+import com.soundsonic.simplemensa.util.TestConstants.WAITING_TIME
 import org.junit.Test
 import org.junit.runner.RunWith
 
