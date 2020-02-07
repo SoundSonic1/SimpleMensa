@@ -15,4 +15,8 @@
     <string name="no_meals_today">There are no meals today.</string>
     <string name="your_balance">Your balance:</string>
     <string name="set_up_emeal">Turn on NFC and hold your Emeal card on your smartphone.</string>
+    <string name="settings">Settings</string>
+    <string name="highlight_vegetarian_food_title">Highlight vegetarian food</string>
+    <string name="highlight_vegetarian_food_summary">Vegetarian meals will be colorized</string>
+    <string name="highlight_vegetarian_food_key">highlight_key</string>
 </resources>

@@ -26,6 +26,7 @@ import com.soundsonic.simplemensa.ui.emeal.EmealViewModel
 import com.soundsonic.simplemensa.ui.main.fragment.CanteenFragment
 import com.soundsonic.simplemensa.ui.main.viewmodel.UserProfileViewModel
 import com.soundsonic.simplemensa.ui.map.fragment.MapFragment
+import com.soundsonic.simplemensa.ui.settings.fragment.SettingsFragment
 import com.soundsonic.simplemensa.util.Constants.DARK_THEME_ON
 import com.soundsonic.simplemensa.util.NfcReader.getValueData
 import com.soundsonic.simplemensa.util.replaceFragment
@@ -97,6 +98,9 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
                 }
                 is EmealFragment -> {
                     navViewMain.setCheckedItem(R.id.nav_balance)
+                }
+                is SettingsFragment -> {
+                    navViewMain.setCheckedItem(R.id.nav_settings)
                 }
             }
 
@@ -185,6 +189,19 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
                     )
                 }
             }
+            R.id.nav_settings -> {
+                if (visibleFragments().all { it !is SettingsFragment }) {
+                    val fragment = supportFragmentManager
+                        .findFragmentByTag(SETTINGS_FRAGMENT_TAG) ?: SettingsFragment()
+
+                    replaceFragment(
+                        supportFragmentManager,
+                        R.id.mainContent,
+                        fragment,
+                        SETTINGS_FRAGMENT_TAG
+                    )
+                }
+            }
         }
         drawerLayoutMain.closeDrawer(GravityCompat.START)
         return true
@@ -238,5 +255,6 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         private const val CANTEEN_FRAGMENT_TAG = "CANTEEN_FRAGMENT_TAG"
         private const val MAP_FRAGMENT_TAG = "MAP_FRAGMENT_TAG"
         private const val EMEAL_FRAGMENT_TAG = "EMEAL_FRAGMENT_TAG"
+        private const val SETTINGS_FRAGMENT_TAG = "SETTINGS_FRAGMENT_TAG"
     }
 }

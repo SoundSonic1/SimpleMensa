@@ -12,8 +12,12 @@
     <string name="mensa_name">Alte Mensa</string>
     <string name="mensa_address">Mommsenstr. 13, 01069 Dresden</string>
     <string name="location_permission_not_granted">Fehlende Berechtigung.</string>
-    <string name="location_explanation">Bitte gewähre die Berechtigungen damit Mensen in deiner Nähe angezeigt werden können.</string>
+    <string name="location_explanation">Bitte gewähre die Standortberechtigung, um Mensen in deiner Nähe anzuzeigen.</string>
     <string name="no_meals_today">Heute gibt es kein Essen.</string>
     <string name="your_balance">Dein Guthaben:</string>
     <string name="set_up_emeal">Schalte NFC ein und halte deine Emeal-Karte an dein Smartphone.</string>
+    <string name="settings">Einstellungen</string>
+    <string name="highlight_vegetarian_food_title">Vegetarische Gerichte hervorheben</string>
+    <string name="highlight_vegetarian_food_summary">Vegetarische Gerichte werden farblich hervorgehoben</string>
+    <string name="highlight_vegetarian_food_key">highlight_key</string>
 </resources>
