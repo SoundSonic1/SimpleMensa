@@ -68,6 +68,16 @@ class MainActivityTest {
         onView(withId(R.id.navViewMain)).perform(NavigationViewActions.navigateTo(R.id.nav_balance))
         onView(withId(R.id.toolbarMain))
             .check(matches(hasDescendant(withText(R.string.menu_balance))))
+
+        Espresso.pressBack()
+
+        onView(withId(R.id.drawerLayoutMain))
+            .check(matches(isClosed(Gravity.LEFT)))
+            .perform(DrawerActions.open())
+        onView(withId(R.id.navViewMain))
+            .perform(NavigationViewActions.navigateTo(R.id.nav_settings))
+        onView(withId(R.id.toolbarMain))
+            .check(matches(hasDescendant(withText(R.string.settings))))
     }
 
     @Test

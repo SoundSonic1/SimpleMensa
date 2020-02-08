@@ -2,6 +2,7 @@ package com.soundsonic.simplemensa.data.model
 
 import android.os.Parcelable
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -14,4 +15,10 @@ data class Meal(
     val category: String? = null,
     val image: String? = null,
     val url: String? = null
-) : Parcelable
+) : Parcelable {
+
+    @IgnoredOnParcel
+    val isVegetarian: Boolean get() = notes?.any {
+        it.contains("vegetarisch", true) || it.contains("vegan", true)
+    } ?: false
+}
