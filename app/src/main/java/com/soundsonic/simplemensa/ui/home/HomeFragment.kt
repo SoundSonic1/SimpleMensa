@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.data.model.Canteen
@@ -39,10 +40,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         canteen_recycler_view.apply {
             adapter = CanteenListAdapter(object : CanteenListAdapter.CanteenListener {
-                override fun onCanteenClicked(canteen: Canteen) {
-                    /**
-                     * Not yet used
-                     */
+                override fun onCanteenClicked(v: View, canteen: Canteen) {
+                    val action = HomeFragmentDirections.actionNavHomeToMealsFragment(canteen)
+                    v.findNavController().navigate(action)
                 }
             })
             layoutManager = LinearLayoutManager(requireContext())

@@ -2,6 +2,8 @@ package com.soundsonic.simplemensa.di
 
 import com.soundsonic.simplemensa.data.repositories.CanteenRepository
 import com.soundsonic.simplemensa.data.repositories.CanteenRepositoryImpl
+import com.soundsonic.simplemensa.data.repositories.MealRepository
+import com.soundsonic.simplemensa.data.repositories.MealRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,4 +16,9 @@ abstract class RepositoryModule {
     abstract fun provideCanteenRepository(
         canteenRepositoryImpl: CanteenRepositoryImpl
     ): CanteenRepository
+
+    @Binds
+    abstract fun provideMealRepository(
+        mealRepositoryImpl: MealRepositoryImpl
+    ): MealRepository
 }

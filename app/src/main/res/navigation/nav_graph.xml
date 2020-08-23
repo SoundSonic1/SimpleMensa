@@ -9,7 +9,11 @@
         android:id="@+id/nav_home"
         android:name="com.soundsonic.simplemensa.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_mealsFragment"
+            app:destination="@id/mealsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -22,4 +26,14 @@
         android:name="com.soundsonic.simplemensa.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/mealsFragment"
+        android:name="com.soundsonic.simplemensa.ui.meals.MealsFragment"
+        android:label="fragment_meals"
+        tools:layout="@layout/fragment_meals" >
+        <argument
+            android:name="canteen"
+            app:argType="com.soundsonic.simplemensa.data.model.Canteen"
+            />
+    </fragment>
 </navigation>

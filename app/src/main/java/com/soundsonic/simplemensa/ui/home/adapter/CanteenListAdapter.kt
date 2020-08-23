@@ -1,5 +1,6 @@
 package com.soundsonic.simplemensa.ui.home.adapter
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,7 +12,7 @@ class CanteenListAdapter(
 ) : ListAdapter<Canteen, CanteenViewHolder>(CANTEEN_DIFF) {
 
     interface CanteenListener {
-        fun onCanteenClicked(canteen: Canteen)
+        fun onCanteenClicked(v: View, canteen: Canteen)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CanteenViewHolder {
@@ -21,7 +22,7 @@ class CanteenListAdapter(
     override fun onBindViewHolder(holder: CanteenViewHolder, position: Int) {
         holder.bind(getItem(position))
         holder.itemView.setOnClickListener {
-            listener.onCanteenClicked(getItem(position))
+            listener.onCanteenClicked(it, getItem(position))
         }
     }
 
