@@ -1,5 +1,6 @@
 package com.soundsonic.simplemensa.di
 
+import com.soundsonic.simplemensa.data.adapter.MealAdapter
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
 import com.soundsonic.simplemensa.util.Constants.BASE_URL
 import com.squareup.moshi.Moshi
@@ -17,7 +18,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMoshi() = Moshi.Builder().build()
+    fun provideMoshi(mealAdapter: MealAdapter): Moshi = Moshi.Builder().add(mealAdapter).build()
 
     @Provides
     @Singleton

@@ -4,7 +4,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Meal(
-    val id: Long,
+    val id: Int,
     val name: String,
     val notes: List<String>? = null,
     val prices: Map<String, Double> = emptyMap(),
