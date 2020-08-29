@@ -16,7 +16,8 @@ class CanteenViewHolder(
         )
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(canteen: Canteen) {
+    fun bind(canteen: Canteen, isFavourite: Boolean) {
         binding.canteen = canteen
+        binding.isFavourite = isFavourite
     }
 }

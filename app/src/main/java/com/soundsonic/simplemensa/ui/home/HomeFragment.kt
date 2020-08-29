@@ -37,7 +37,8 @@ class HomeFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = canteenViewModel
+        binding.canteenViewModel = canteenViewModel
+        binding.userViewModel = userViewModel
 
         return binding.root
     }
@@ -46,9 +47,19 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         canteen_recycler_view.apply {
             adapter = CanteenListAdapter(object : CanteenListAdapter.CanteenListener {
+
                 override fun onCanteenClicked(v: View, canteen: Canteen) {
                     val action = HomeFragmentDirections.actionNavHomeToTabFragment(canteen, canteen.name)
                     v.findNavController().navigate(action)
+                }
+
+                override fun onFavouriteClicked(v: View, canteen: Canteen) {
+                    v.isSelected = !v.isSelected
+                    if (v.isSelected) {
+                        userViewModel.addCanteen(canteen)
+                    } else {
+                        userViewModel.removeCanteen(canteen)
+                    }
                 }
             })
             layoutManager = LinearLayoutManager(requireContext())

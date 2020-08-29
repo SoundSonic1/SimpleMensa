@@ -6,6 +6,9 @@
         <variable
             name="canteen"
             type="com.soundsonic.simplemensa.data.model.Canteen" />
+        <variable
+            name="isFavourite"
+            type="Boolean" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -16,46 +19,66 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/canteen_image_view"
-                android:layout_width="120dp"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/canteen_layout"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/canteen_image_view"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:canteenImage="@{canteen.imageUrl}">
+
+                </androidx.appcompat.widget.AppCompatImageView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/canteen_name_text_view"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@{canteen.name}"
+                    app:layout_constraintStart_toEndOf="@id/canteen_image_view"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/canteen_name">
+
+                </androidx.appcompat.widget.AppCompatTextView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/canteen_address_text_view"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@{canteen.address}"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    tools:text="@string/canteen_address"
+                    app:layout_constraintStart_toEndOf="@id/canteen_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/canteen_name_text_view">
+
+                </androidx.appcompat.widget.AppCompatTextView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="8dp"
+                android:id="@+id/favourite_canteen_image"
+                app:srcCompat="@drawable/favourite_selectable"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:canteenImage="@{canteen.imageUrl}">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:isSelected="@{isFavourite}"
+                >
 
             </androidx.appcompat.widget.AppCompatImageView>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/canteen_name_text_view"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
-                android:text="@{canteen.name}"
-                app:layout_constraintStart_toEndOf="@id/canteen_image_view"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/canteen_name">
-
-            </androidx.appcompat.widget.AppCompatTextView>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/canteen_address_text_view"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@{canteen.address}"
-                android:maxLines="2"
-                android:ellipsize="end"
-                tools:text="@string/canteen_address"
-                app:layout_constraintStart_toEndOf="@id/canteen_image_view"
-                app:layout_constraintTop_toBottomOf="@id/canteen_name_text_view">
-
-            </androidx.appcompat.widget.AppCompatTextView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
