@@ -25,6 +25,7 @@ class HomeFragment : Fragment() {
     lateinit var customItemAnimator: RecyclerView.ItemAnimator
 
     private val canteenViewModel: CanteenViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
