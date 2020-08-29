@@ -9,15 +9,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.databinding.FragmentHomeBinding
 import com.soundsonic.simplemensa.ui.home.adapter.CanteenListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
+
+    @Inject
+    lateinit var customItemAnimator: RecyclerView.ItemAnimator
 
     private val canteenViewModel: CanteenViewModel by viewModels()
 
@@ -46,6 +51,7 @@ class HomeFragment : Fragment() {
                 }
             })
             layoutManager = LinearLayoutManager(requireContext())
+            itemAnimator = customItemAnimator
         }
     }
 }
