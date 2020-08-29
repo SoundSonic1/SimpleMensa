@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         canteen_recycler_view.apply {
             adapter = CanteenListAdapter(object : CanteenListAdapter.CanteenListener {
                 override fun onCanteenClicked(v: View, canteen: Canteen) {
-                    val action = HomeFragmentDirections.actionNavHomeToMealsFragment(canteen, canteen.name)
+                    val action = HomeFragmentDirections.actionNavHomeToTabFragment(canteen, canteen.name)
                     v.findNavController().navigate(action)
                 }
             })

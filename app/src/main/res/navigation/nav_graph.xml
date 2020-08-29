@@ -11,8 +11,8 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_nav_home_to_mealsFragment"
-            app:destination="@id/mealsFragment" />
+            android:id="@+id/action_nav_home_to_tabFragment"
+            app:destination="@id/tabFragment" />
     </fragment>
 
     <fragment
@@ -27,10 +27,11 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
-        android:id="@+id/mealsFragment"
-        android:name="com.soundsonic.simplemensa.ui.meals.MealsFragment"
+        android:id="@+id/tabFragment"
+        android:name="com.soundsonic.simplemensa.ui.meals.TabFragment"
         android:label="{canteenName}"
-        tools:layout="@layout/fragment_meals" >
+        tools:layout="@layout/fragment_tab"
+        >
         <argument
             android:name="canteen"
             app:argType="com.soundsonic.simplemensa.data.model.Canteen"
