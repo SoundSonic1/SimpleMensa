@@ -1,5 +1,6 @@
 package com.soundsonic.simplemensa.ui.home.adapter
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.data.model.Canteen
+import com.soundsonic.simplemensa.databinding.CanteenItemBinding
 import com.soundsonic.simplemensa.ui.home.viewholder.CanteenViewHolder
 
 class CanteenListAdapter(
@@ -22,7 +24,8 @@ class CanteenListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CanteenViewHolder {
-        return CanteenViewHolder(parent)
+        val canteenItemBinding = CanteenItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CanteenViewHolder(canteenItemBinding)
     }
 
     override fun onBindViewHolder(holder: CanteenViewHolder, position: Int) {
