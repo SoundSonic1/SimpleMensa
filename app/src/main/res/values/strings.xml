@@ -13,4 +13,10 @@
 
     <string name="canteen_name">Alte Mensa</string>
     <string name="canteen_address">Mommsenstr. 13, 01069 Dresden</string>
+
+    <string name="meal_name">Mom\'s Spaghetti</string>
+    <string name="meal_category">Vegetarian</string>
+    <string name="meal_prices">3,50€/5,40€</string>
+
+    <string name="no_meals">There are no meals today.</string>
 </resources>
