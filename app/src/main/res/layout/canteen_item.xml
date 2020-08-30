@@ -19,12 +19,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/canteen_layout"
+                android:background="?android:attr/selectableItemBackground"
                 >
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/canteen_image_view"
@@ -40,11 +42,14 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/canteen_name_text_view"
-                    android:layout_width="200dp"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="12dp"
                     android:text="@{canteen.name}"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     app:layout_constraintStart_toEndOf="@id/canteen_image_view"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="@string/canteen_name">
@@ -53,10 +58,11 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/canteen_address_text_view"
-                    android:layout_width="200dp"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="@{canteen.address}"
+                    android:textSize="12sp"
                     android:maxLines="2"
                     android:ellipsize="end"
                     tools:text="@string/canteen_address"

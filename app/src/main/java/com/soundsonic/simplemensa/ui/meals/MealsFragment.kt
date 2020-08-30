@@ -71,6 +71,5 @@ class MealsFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = customItemAnimator
         }
-
     }
 }
