@@ -36,7 +36,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:canteenImage="@{canteen.imageUrl}" />
+                    app:setImage="@{canteen.imageUrl}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/canteen_name_text_view"

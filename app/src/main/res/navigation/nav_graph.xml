@@ -44,5 +44,16 @@
             android:name="canteenName"
             app:argType="string"
             />
+        <action
+            android:id="@+id/action_tabFragment_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealDetailFragment"
+        android:name="com.soundsonic.simplemensa.ui.mealdetail.MealDetailFragment"
+        android:label="MealDetailFragment">
+        <argument
+            android:name="meal"
+            app:argType="com.soundsonic.simplemensa.data.model.Meal" />
     </fragment>
 </navigation>

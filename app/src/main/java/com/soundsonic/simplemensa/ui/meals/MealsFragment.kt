@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.soundsonic.simplemensa.data.model.Canteen
@@ -65,11 +66,18 @@ class MealsFragment : Fragment() {
             mealRecyclerView.apply {
                 adapter = MealListAdapter(object : MealListAdapter.OnClickListener {
                     override fun onMealClicked(v: View, meal: Meal) {
+                        val action = TabFragmentDirections.actionTabFragmentToMealDetailFragment(meal)
+                        v.findNavController().navigate(action)
                     }
                 })
                 layoutManager = LinearLayoutManager(requireContext())
                 itemAnimator = customItemAnimator
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

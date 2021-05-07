@@ -1,10 +1,8 @@
 package com.soundsonic.simplemensa.ui.home.adapter
 
 import android.view.View
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.soundsonic.simplemensa.data.model.Canteen
 
 object BindingAdapter {
@@ -26,13 +24,5 @@ object BindingAdapter {
     @BindingAdapter("isSelected")
     fun setSelected(view: View, isSelected: Boolean) {
         view.isSelected = isSelected
-    }
-
-    @JvmStatic
-    @BindingAdapter("canteenImage")
-    fun setCanteenImage(imageView: AppCompatImageView, url: String) {
-        imageView.load(url) {
-            crossfade(true)
-        }
     }
 }
