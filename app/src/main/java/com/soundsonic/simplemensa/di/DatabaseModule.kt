@@ -9,11 +9,11 @@ import com.soundsonic.simplemensa.util.Constants.CANTEEN_DB
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
     @Provides

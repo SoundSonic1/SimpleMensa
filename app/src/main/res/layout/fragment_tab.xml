@@ -25,6 +25,4 @@
         </androidx.viewpager.widget.ViewPager>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-
 </FrameLayout>

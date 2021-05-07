@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.soundsonic.simplemensa.R
+import com.soundsonic.simplemensa.databinding.FragmentTabBinding
 import com.soundsonic.simplemensa.ui.meals.adapter.MealPagerAdapter
 import com.soundsonic.simplemensa.util.createDatesForThreeDays
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_tab.*
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
@@ -19,6 +18,8 @@ class TabFragment : Fragment() {
 
     @Inject
     lateinit var sdf: SimpleDateFormat
+    private var _binding: FragmentTabBinding? = null
+    private val binding: FragmentTabBinding get() = _binding!!
 
     private val args: TabFragmentArgs by navArgs()
 
@@ -26,18 +27,23 @@ class TabFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_tab, container, false)
+    ): View {
+
+        _binding = FragmentTabBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view_pager.adapter = MealPagerAdapter(
-            args.canteen,
-            createDatesForThreeDays(),
-            childFragmentManager
-        )
-        tab_layout_meals.setupWithViewPager(view_pager)
+        with(binding) {
+            viewPager.adapter = MealPagerAdapter(
+                args.canteen,
+                createDatesForThreeDays(),
+                childFragmentManager
+            )
+            tabLayoutMeals.setupWithViewPager(viewPager)
+        }
     }
 }

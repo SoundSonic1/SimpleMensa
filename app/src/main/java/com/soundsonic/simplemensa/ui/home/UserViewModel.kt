@@ -1,6 +1,5 @@
 package com.soundsonic.simplemensa.ui.home
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -10,9 +9,12 @@ import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.data.model.UserProfile
 import com.soundsonic.simplemensa.data.repositories.UserRepository
 import com.soundsonic.simplemensa.util.Constants.USER_ID
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class UserViewModel @ViewModelInject constructor(
+@HiltViewModel
+class UserViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
     private val userProfile: MutableLiveData<UserProfile> = MutableLiveData()

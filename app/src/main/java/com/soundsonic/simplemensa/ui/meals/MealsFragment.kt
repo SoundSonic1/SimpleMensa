@@ -5,24 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.data.model.Meal
 import com.soundsonic.simplemensa.databinding.FragmentMealsBinding
 import com.soundsonic.simplemensa.ui.meals.adapter.MealListAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_meals.*
 import java.util.Date
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MealsFragment : Fragment() {
 
+    private var _binding: FragmentMealsBinding? = null
+    private val binding: FragmentMealsBinding get() = _binding!!
     private val viewModel: MealsViewModel by viewModels()
 
     @Inject
@@ -44,15 +43,14 @@ class MealsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val canteen: Canteen = requireArguments().getParcelable(CANTEEN_KEY)!!
         val date: Date = requireArguments().getSerializable(DATE_KEY)!! as Date
 
         viewModel.getMealsForDate(canteen.id, date)
 
-        val binding: FragmentMealsBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_meals, container, false)
+        _binding = FragmentMealsBinding.inflate(inflater, container, false)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -63,13 +61,15 @@ class MealsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        meal_recycler_view.apply {
-            adapter = MealListAdapter(object : MealListAdapter.OnClickListener {
-                override fun onMealClicked(v: View, meal: Meal) {
-                }
-            })
-            layoutManager = LinearLayoutManager(requireContext())
-            itemAnimator = customItemAnimator
+        with(binding) {
+            mealRecyclerView.apply {
+                adapter = MealListAdapter(object : MealListAdapter.OnClickListener {
+                    override fun onMealClicked(v: View, meal: Meal) {
+                    }
+                })
+                layoutManager = LinearLayoutManager(requireContext())
+                itemAnimator = customItemAnimator
+            }
         }
     }
 }

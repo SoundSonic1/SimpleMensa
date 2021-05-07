@@ -1,16 +1,18 @@
 package com.soundsonic.simplemensa.ui.meals
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.soundsonic.simplemensa.data.model.Meal
 import com.soundsonic.simplemensa.data.repositories.MealRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.Date
+import javax.inject.Inject
 
-class MealsViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MealsViewModel @Inject constructor(
     private val mealRepository: MealRepository
 ) : ViewModel() {
 
