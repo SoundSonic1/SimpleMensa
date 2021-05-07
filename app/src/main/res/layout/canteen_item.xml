@@ -36,9 +36,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:canteenImage="@{canteen.imageUrl}">
-
-                </androidx.appcompat.widget.AppCompatImageView>
+                    app:canteenImage="@{canteen.imageUrl}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/canteen_name_text_view"
@@ -52,9 +50,7 @@
                     android:ellipsize="end"
                     app:layout_constraintStart_toEndOf="@id/canteen_image_view"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/canteen_name">
-
-                </androidx.appcompat.widget.AppCompatTextView>
+                    tools:text="@string/canteen_name" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/canteen_address_text_view"
@@ -67,9 +63,7 @@
                     android:ellipsize="end"
                     tools:text="@string/canteen_address"
                     app:layout_constraintStart_toEndOf="@id/canteen_image_view"
-                    app:layout_constraintTop_toBottomOf="@id/canteen_name_text_view">
-
-                </androidx.appcompat.widget.AppCompatTextView>
+                    app:layout_constraintTop_toBottomOf="@id/canteen_name_text_view" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -81,13 +75,9 @@
                 app:srcCompat="@drawable/favourite_selectable"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:isSelected="@{isFavourite}"
-                >
-
-            </androidx.appcompat.widget.AppCompatImageView>
+                app:isSelected="@{isFavourite}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.cardview.widget.CardView>
 </layout>
