@@ -18,12 +18,13 @@ class MealDetailFragment : Fragment() {
     private val viewModel: MealDetailViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentMealDetailBinding.inflate(inflater, container, false)
-        val meal: Meal = arguments?.getParcelable<Meal>("meal")!!
+        val meal: Meal = arguments?.getParcelable("meal")!!
         viewModel.setMeal(meal)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
