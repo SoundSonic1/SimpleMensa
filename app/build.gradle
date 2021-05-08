@@ -42,6 +42,9 @@ android {
             useJUnitPlatform()
         }
     }
+    jacoco {
+        version = "0.8.6"
+    }
 }
 
 dependencies {
@@ -104,4 +107,5 @@ jacoco {
 
 tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
 }
