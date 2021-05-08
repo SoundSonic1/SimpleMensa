@@ -1,11 +1,11 @@
 version: 2.1
 jobs:
-  filters:
-    branches:
-      only:
-        - master
-        - develop
   build:
+    filters:
+      branches:
+        only:
+          - master
+          - develop
     working_directory: ~/code
     docker:
       - image: circleci/android:api-30
