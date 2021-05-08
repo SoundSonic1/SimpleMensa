@@ -5,10 +5,10 @@
     <string name="nav_header_title">@string/app_name</string>
     <string name="nav_header_subtitle">Keep it simple.</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Einstellungen</string>
 
-    <string name="menu_home">Canteens</string>
-    <string name="menu_map">Map</string>
+    <string name="menu_home">Mensen</string>
+    <string name="menu_map">Karte</string>
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="canteen_name">Alte Mensa</string>
@@ -18,5 +18,5 @@
     <string name="meal_category">Vegetarian</string>
     <string name="meal_prices">3,50€/5,40€</string>
 
-    <string name="no_meals">There are no meals today.</string>
+    <string name="no_meals">Heute gibt es keine Gerichte.</string>
 </resources>
