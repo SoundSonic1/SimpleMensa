@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
+import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager
+import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions
 import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
 import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.databinding.FragmentMapBinding
@@ -16,12 +20,18 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MapFragment : Fragment() {
 
+    companion object {
+        private const val ICON_ID = "restaurant-11"
+    }
+
     private var _binding: FragmentMapBinding? = null
     private val binding: FragmentMapBinding get() = _binding!!
+    private val mapViewModel: MapViewModel by viewModels()
     private lateinit var map: MapboxMap
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
@@ -44,6 +54,11 @@ class MapFragment : Fragment() {
                     } catch (e: RuntimeException) {
                         e.printStackTrace()
                     }
+                    val symbolManager = SymbolManager(mapView, map, style).apply {
+                        iconAllowOverlap = true
+                        iconIgnorePlacement = true
+                    }
+                    setUpMarkers(symbolManager)
                 }
             }
         }
@@ -84,4 +99,18 @@ class MapFragment : Fragment() {
         binding.mapView.onDestroy()
     }
 
+    private fun setUpMarkers(symbolManager: SymbolManager) {
+        mapViewModel.canteens.observe(viewLifecycleOwner, { canteens ->
+            canteens.forEach { canteen ->
+                symbolManager.create(
+                    SymbolOptions()
+                        .withIconImage(ICON_ID)
+                        .withLatLng(LatLng(canteen.coordinates[0], canteen.coordinates[1]))
+                        .withIconSize(2.0f)
+                        .withTextField(canteen.name)
+                        .withTextOffset(arrayOf(0f, 1.5f))
+                )
+            }
+        })
+    }
 }
