@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Create secrets
           command: echo $GOOGLE_SERVICES | base64 -di > app/google-services.json
-      - run: echo $KEY_PROPERTIES | base64 -di > android/key.properties
+      - run: echo $KEY_PROPERTIES | base64 -di > app/key.properties
       - run: echo $KEY_STORE | base64 -di > app/upload-keystore.jks
       - run:
           name: Download Dependencies
@@ -46,29 +46,33 @@ jobs:
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
-      - store_artifacts:
-          path: app-release.apk
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: app/build/test-results
+      - persist_to_workspace:
+          root: .
+          paths: .
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
   deploy:
     working_directory: ~/code
     docker:
-      - image: circleci/node:16.1.0
+      - image: cimg/node:16.1.0
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
+      - attach_workspace:
+          at: ./
       - run:
           name: Install firebase tools
-          command: npm install -g firebase-tools
+          command: npm install -D firebase-tools
+      - run: ls
       - run:
           name: Upload apk
-          command: firebase appdistribution:distribute app-release.apk --app 1:672693801281:android:705e0fff90a5e3183ad1c0 --release-notes-file release-notes.md --groups "intern" --token "$FIREBASE_TOKEN"
+          command: ./node_modules/.bin/firebase appdistribution:distribute app-release.apk --app 1:672693801281:android:705e0fff90a5e3183ad1c0 --release-notes-file release-notes.md --groups "intern" --token "$FIREBASE_TOKEN"
 
 workflows:
   version: 2
-  build-and-test:
+  build-and-deploy:
     jobs:
       - build:
           filters:
@@ -76,9 +80,9 @@ workflows:
               only:
                 - master
                 - develop
-  deploy-firebase:
-    jobs:
       - deploy:
+          requires:
+            - build
           filters:
             branches:
               only:
