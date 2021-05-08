@@ -20,12 +20,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.soundsonic.simplemensa.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.soundsonic.simplemensa.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
@@ -56,4 +50,9 @@
             android:name="meal"
             app:argType="com.soundsonic.simplemensa.data.model.Meal" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.soundsonic.simplemensa.ui.map.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
 </navigation>
