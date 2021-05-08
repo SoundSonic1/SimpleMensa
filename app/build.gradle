@@ -5,6 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "org.jlleitschuh.gradle.ktlint"
+apply plugin: 'com.hiya.jacoco-android'
 
 android {
     compileSdkVersion 30
@@ -93,4 +94,12 @@ dependencies {
 
 ktlint {
     version.set("0.36.0")
+}
+
+jacoco {
+    toolVersion = "0.8.4"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
 }
