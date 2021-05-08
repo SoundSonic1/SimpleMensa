@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CardViewStyle" parent="CardView">
+        <item name="cardBackgroundColor">@color/colorCardViewBackground</item>
+    </style>
+</resources>
