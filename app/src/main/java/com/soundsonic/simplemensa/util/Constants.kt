@@ -6,4 +6,5 @@ object Constants {
     const val CANTEEN_OVERVIEW_URL =
         "https://static.studentenwerk-dresden.de/mensen/mensen-cafeterien-aussenansichten/"
     const val USER_ID = 1
+    const val DARK_THEME_ON = "DARK_THEME_ON"
 }
