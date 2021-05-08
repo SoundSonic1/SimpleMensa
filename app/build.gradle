@@ -90,6 +90,8 @@ dependencies {
     implementation "io.coil-kt:coil:1.2.1"
 
     implementation 'jp.wasabeef:recyclerview-animators:4.0.1'
+
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.1'
 }
 
 ktlint {
@@ -97,7 +99,7 @@ ktlint {
 }
 
 jacoco {
-    toolVersion = "0.8.4"
+    toolVersion = "0.8.6"
 }
 
 tasks.withType(Test) {
