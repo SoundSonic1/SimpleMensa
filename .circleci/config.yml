@@ -65,7 +65,6 @@ jobs:
       - run:
           name: Install firebase tools
           command: npm install -D firebase-tools
-      - run: ls
       - run:
           name: Upload apk
           command: ./node_modules/.bin/firebase appdistribution:distribute app-release.apk --app 1:672693801281:android:705e0fff90a5e3183ad1c0 --release-notes-file release-notes.md --groups "intern" --token "$FIREBASE_TOKEN"
@@ -87,4 +86,3 @@ workflows:
             branches:
               only:
                 - master
-                - develop
