@@ -1,44 +1,68 @@
 package com.soundsonic.simplemensa
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode
+import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import androidx.core.content.edit
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
+import com.soundsonic.simplemensa.databinding.ActivityMainBinding
+import com.soundsonic.simplemensa.util.Constants.DARK_THEME_ON
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var binding: ActivityMainBinding
+
+    @Inject
+    lateinit var sharedPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
 
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.appBarMainLayout.toolbar)
+
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow),
-            drawerLayout
+            setOf(R.id.nav_home, R.id.nav_map, R.id.nav_slideshow),
+            binding.drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        binding.navView.setupWithNavController(navController)
+
+        if (getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            binding.switchCompatMain.isChecked = true
+        }
+
+        binding.switchCompatMain.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                sharedPref.edit {
+                    putInt(DARK_THEME_ON, AppCompatDelegate.MODE_NIGHT_YES)
+                }
+            } else {
+                setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                sharedPref.edit {
+                    putInt(DARK_THEME_ON, AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }

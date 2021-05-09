@@ -13,3 +13,6 @@
 /captures
 .externalNativeBuild
 .cxx
+*.jks
+key.properties
+google-services.json
