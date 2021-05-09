@@ -20,6 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/canteen_recycler_view"
+            android:paddingTop="8dp"
+            android:clipToPadding="false"
             app:canteens="@{canteenViewModel.canteens}"
             app:favourites="@{userViewModel.favouriteCanteenIds}" />
 
