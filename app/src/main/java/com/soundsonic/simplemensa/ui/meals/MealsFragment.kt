@@ -66,7 +66,7 @@ class MealsFragment : Fragment() {
             mealRecyclerView.apply {
                 adapter = MealListAdapter(object : MealListAdapter.OnClickListener {
                     override fun onMealClicked(v: View, meal: Meal) {
-                        val action = TabFragmentDirections.actionTabFragmentToMealDetailFragment(meal)
+                        val action = TabFragmentDirections.actionTabFragmentToMealDetailFragment(meal, meal.category ?: "")
                         v.findNavController().navigate(action)
                     }
                 })
