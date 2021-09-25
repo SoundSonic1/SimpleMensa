@@ -1,9 +1,9 @@
 package com.soundsonic.simplemensa.ui.home
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.data.model.UserProfile
@@ -17,43 +17,26 @@ class UserViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    companion object {
-        private const val USER_ID = 1
-    }
-
-    private val userProfile: MutableLiveData<UserProfile> = MutableLiveData()
+    private val userProfile: LiveData<UserProfile?> = userRepository.userProfile.asLiveData()
     val favouriteCanteenIds: LiveData<Set<Int>> = Transformations.map(userProfile) {
-        it.favouriteCanteenIds
+        it?.favouriteCanteenIds ?: mutableSetOf()
     }
 
     init {
         viewModelScope.launch {
-            val profile = userRepository.getUserById(USER_ID)
-            if (profile == null) {
-                val newProfile = UserProfile(USER_ID, mutableSetOf())
-                userRepository.insertUserProfile(newProfile)
-                userProfile.value = newProfile
-            } else {
-                userProfile.value = profile
-            }
+            userRepository.loadUser()
         }
     }
 
     fun addCanteen(canteen: Canteen) {
-        val user = userProfile.value ?: return
-        user.favouriteCanteenIds.add(canteen.id)
         viewModelScope.launch {
-            userRepository.insertUserProfile(user)
-            userProfile.value = user
+            userRepository.addCanteen(canteenId = canteen.id)
         }
     }
 
     fun removeCanteen(canteen: Canteen) {
-        val user = userProfile.value ?: return
-        user.favouriteCanteenIds.remove(canteen.id)
         viewModelScope.launch {
-            userRepository.insertUserProfile(user)
-            userProfile.value = user
+            userRepository.removeCanteen(canteenId = canteen.id)
         }
     }
 }

@@ -1,8 +1,15 @@
 package com.soundsonic.simplemensa.data.repositories
 
 import com.soundsonic.simplemensa.data.model.UserProfile
+import kotlinx.coroutines.flow.StateFlow
 
 interface UserRepository {
-    suspend fun insertUserProfile(userProfile: UserProfile)
-    suspend fun getUserById(id: Int): UserProfile?
+
+    val userProfile: StateFlow<UserProfile?>
+
+    suspend fun loadUser()
+    suspend fun addCanteen(canteenId: Int)
+    suspend fun removeCanteen(canteenId: Int)
+    suspend fun setShowOnlyFavourites(showOnlyFavourites: Boolean)
+    suspend fun getUserProfile(): UserProfile
 }

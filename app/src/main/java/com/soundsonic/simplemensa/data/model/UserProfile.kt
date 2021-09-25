@@ -6,5 +6,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class UserProfile(
     @PrimaryKey val id: Int,
-    val favouriteCanteenIds: MutableSet<Int>
+    val favouriteCanteenIds: MutableSet<Int>,
+    var showOnlyFavourites: Boolean
 )

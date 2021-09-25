@@ -8,4 +8,5 @@
 
     <color name="colorBackground">@android:color/background_light</color>
     <color name="colorCardViewBackground">@android:color/background_light</color>
+    <color name="colorMenuItem">#FAFAFA</color>
 </resources>
