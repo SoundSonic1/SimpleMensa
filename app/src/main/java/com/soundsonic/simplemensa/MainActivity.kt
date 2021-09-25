@@ -3,19 +3,25 @@ package com.soundsonic.simplemensa
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import androidx.core.content.edit
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.soundsonic.simplemensa.databinding.ActivityMainBinding
+import com.soundsonic.simplemensa.ui.MainViewModel
 import com.soundsonic.simplemensa.util.Constants.DARK_THEME_ON
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -23,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: MainViewModel by viewModels()
 
     @Inject
     lateinit var sharedPref: SharedPreferences
@@ -35,7 +42,8 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMainLayout.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.nav_home, R.id.nav_map, R.id.nav_slideshow),
             binding.drawerLayout
@@ -64,7 +72,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
+        val item = menu.findItem(R.id.action_filter)
+        lifecycleScope.launch {
+            item.isChecked = viewModel.getShowOnlyFavourites()
+        }
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_filter -> {
+                item.isChecked = !item.isChecked
+                viewModel.setShowOnlyFavourites(item.isChecked)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

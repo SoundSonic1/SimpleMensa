@@ -5,6 +5,7 @@ import com.soundsonic.simplemensa.data.database.CanteenDao
 import com.soundsonic.simplemensa.data.model.Canteen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,6 +20,7 @@ class CanteenRepositoryImpl @Inject constructor(
                 canteenDao.insertAll(this)
             }
         } catch (e: Exception) {
+            Timber.d(e)
             canteenDao.findAll()
         }
     }

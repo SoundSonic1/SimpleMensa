@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5168539325842697" />
+        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.5168539325842697" />
+        <entry key="app/src/main/res/layout/canteen_item.xml" value="0.536" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.30625" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.30625" />
+        <entry key="app/src/main/res/menu/main.xml" value="0.5270833333333333" />
+      </map>
+    </option>
+  </component>
   <component name="EntryPointsManager">
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="dagger.Binds" />

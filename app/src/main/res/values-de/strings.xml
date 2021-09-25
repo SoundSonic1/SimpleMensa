@@ -5,7 +5,7 @@
     <string name="nav_header_title">@string/app_name</string>
     <string name="nav_header_subtitle">Keep it simple.</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Einstellungen</string>
+    <string name="action_filter">Zeige nur favorisierte Mensen</string>
 
     <string name="menu_home">Mensen</string>
     <string name="menu_map">Karte</string>

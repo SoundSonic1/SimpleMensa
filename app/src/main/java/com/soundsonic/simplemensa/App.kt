@@ -7,6 +7,7 @@ import com.mapbox.mapboxsdk.Mapbox
 import com.soundsonic.simplemensa.BuildConfig.MAPBOX_TOKEN
 import com.soundsonic.simplemensa.util.Constants.DARK_THEME_ON
 import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltAndroidApp
@@ -16,6 +17,11 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+
         AppCompatDelegate.setDefaultNightMode(
             sharedPref.getInt(DARK_THEME_ON, AppCompatDelegate.MODE_NIGHT_NO)
         )

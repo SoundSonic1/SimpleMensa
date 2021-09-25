@@ -10,14 +10,10 @@ import com.soundsonic.simplemensa.databinding.FragmentTabBinding
 import com.soundsonic.simplemensa.ui.meals.adapter.MealPagerAdapter
 import com.soundsonic.simplemensa.util.createDatesForThreeDays
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class TabFragment : Fragment() {
 
-    @Inject
-    lateinit var sdf: SimpleDateFormat
     private var _binding: FragmentTabBinding? = null
     private val binding: FragmentTabBinding get() = _binding!!
 
@@ -30,7 +26,6 @@ class TabFragment : Fragment() {
     ): View {
 
         _binding = FragmentTabBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 

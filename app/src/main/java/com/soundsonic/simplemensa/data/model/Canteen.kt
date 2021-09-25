@@ -3,7 +3,6 @@ package com.soundsonic.simplemensa.data.model
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.soundsonic.simplemensa.util.Constants.CANTEEN_OVERVIEW_URL
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
 
@@ -19,6 +18,12 @@ data class Canteen(
     val url: String,
     val menu: String
 ) : Parcelable {
+
+    companion object {
+        const val CANTEEN_OVERVIEW_URL =
+            "https://static.studentenwerk-dresden.de/mensen/mensen-cafeterien-aussenansichten/"
+    }
+
     fun getImageUrl(): String {
         val htmlName = url.substringAfter("details-").substringBefore(".html")
         return "$CANTEEN_OVERVIEW_URL$htmlName.jpg"
