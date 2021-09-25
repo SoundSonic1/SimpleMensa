@@ -7,7 +7,6 @@ import androidx.room.Room
 import com.soundsonic.simplemensa.data.database.AppDatabase
 import com.soundsonic.simplemensa.data.database.CanteenDao
 import com.soundsonic.simplemensa.data.database.UserProfileDao
-import com.soundsonic.simplemensa.util.Constants.CANTEEN_DB
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +16,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
+
+    private const val CANTEEN_DB = "CANTEEN_DB"
 
     @Provides
     @Singleton

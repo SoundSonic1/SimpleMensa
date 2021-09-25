@@ -2,7 +2,6 @@ package com.soundsonic.simplemensa.di
 
 import com.soundsonic.simplemensa.data.adapter.MealAdapter
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
-import com.soundsonic.simplemensa.util.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -15,6 +14,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    private const val BASE_URL = "https://api.studentenwerk-dresden.de/openmensa/v2/"
 
     @Provides
     @Singleton

@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.data.model.UserProfile
 import com.soundsonic.simplemensa.data.repositories.UserRepository
-import com.soundsonic.simplemensa.util.Constants.USER_ID
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,6 +16,11 @@ import javax.inject.Inject
 class UserViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
+
+    companion object {
+        private const val USER_ID = 1
+    }
+
     private val userProfile: MutableLiveData<UserProfile> = MutableLiveData()
     val favouriteCanteenIds: LiveData<Set<Int>> = Transformations.map(userProfile) {
         it.favouriteCanteenIds
