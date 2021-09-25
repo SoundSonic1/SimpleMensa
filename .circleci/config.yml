@@ -1,5 +1,27 @@
 version: 2.1
+
+orbs:
+  android: circleci/android@1.0.3
+
 jobs:
+  test:
+    executor:
+      name: android/android-machine
+
+    steps:
+      - checkout
+      - run:
+          name: Create secrets
+          command: echo $GOOGLE_SERVICES | base64 -di > app/google-services.json
+      - android/start-emulator-and-run-tests:
+          test-command: ./gradlew jacocoTestDebugUnitTestReport
+      - run:
+          name: Upload to codecov
+          command: bash <(curl -s https://codecov.io/bash) -t a6b8afd6-1ed4-4e8c-9a21-7ced0f83ba36
+      - run:
+          name: Run klintCheck
+          command: ./gradlew ktlintCheck
+
   build:
     working_directory: ~/code
     docker:
@@ -11,8 +33,8 @@ jobs:
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-         command: sudo chmod +x ./gradlew
+          name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+          command: sudo chmod +x ./gradlew
       - run:
           name: Create secrets
           command: echo $GOOGLE_SERVICES | base64 -di > app/google-services.json
@@ -25,18 +47,6 @@ jobs:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-      - run:
-          name: Run unit tests
-          command: ./gradlew testDebugUnitTest
-      - run:
-          name: Run jacocoTest
-          command: ./gradlew jacocoTestDebugUnitTestReport
-      - run:
-          name: Upload to codecov
-          command: bash <(curl -s https://codecov.io/bash) -t a6b8afd6-1ed4-4e8c-9a21-7ced0f83ba36
-      - run:
-          name: Run klintCheck
-          command: ./gradlew ktlintCheck
       - run:
           name: Compile apk
           command: ./gradlew assembleRelease
@@ -73,14 +83,15 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
+      - test
       - build:
           filters:
             branches:
               only:
                 - master
-                - develop
       - deploy:
           requires:
+            - test
             - build
           filters:
             branches:
