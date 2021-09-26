@@ -4,12 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/debug/res/xml/network_security_config.xml" value="0.3072916666666667" />
+        <entry key="app/src/main/res/drawable-night/ic_broccoli_32dp.xml" value="0.32760416666666664" />
+        <entry key="app/src/main/res/drawable/ic_broccoli_32dp.xml" value="0.32760416666666664" />
+        <entry key="app/src/main/res/drawable/ic_heart_not_filled.xml" value="0.32760416666666664" />
+        <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.32760416666666664" />
+        <entry key="app/src/main/res/drawable/ic_settings_gear_svgrepo_com.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5168539325842697" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.5168539325842697" />
         <entry key="app/src/main/res/layout/canteen_item.xml" value="0.536" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.30625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.30625" />
+        <entry key="app/src/main/res/layout/fragment_map.xml" value="0.3072916666666667" />
+        <entry key="app/src/main/res/layout/fragment_meal_detail.xml" value="0.3072916666666667" />
+        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.3078125" />
+        <entry key="app/src/main/res/layout/fragment_tab.xml" value="0.3072916666666667" />
+        <entry key="app/src/main/res/layout/meal_item.xml" value="0.536" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.3072916666666667" />
         <entry key="app/src/main/res/menu/main.xml" value="0.5270833333333333" />
+        <entry key="app/src/main/res/xml/preferences.xml" value="0.3072916666666667" />
       </map>
     </option>
   </component>

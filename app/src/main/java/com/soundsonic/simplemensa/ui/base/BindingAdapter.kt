@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.data.model.Canteen
 import com.soundsonic.simplemensa.data.model.Meal
 import com.soundsonic.simplemensa.ui.home.adapter.CanteenListAdapter
@@ -45,9 +46,13 @@ object BindingAdapter {
 
     @JvmStatic
     @BindingAdapter("prices")
-    fun setPrices(textView: TextView, prices: Map<String, Double>) {
+    fun setPrices(textView: TextView, prices: Map<String, Double?>) {
         textView.text = prices.values.joinToString(" / ") { price ->
-            CurrencyUtil.euroCurrency.format(price)
+            if (price == null) {
+                textView.context.getString(R.string.unknown)
+            } else {
+                CurrencyUtil.euroCurrency.format(price)
+            }
         }
     }
 

@@ -12,7 +12,7 @@ class MealAdapter @Inject constructor() {
             id = (jsonMap["id"] as Double).toInt(),
             name = jsonMap["name"] as String,
             notes = jsonMap["notes"] as? List<String>,
-            prices = jsonMap["prices"] as? Map<String, Double> ?: emptyMap(),
+            prices = jsonMap["prices"] as? Map<String, Double?> ?: emptyMap(),
             category = jsonMap["category"] as? String,
             image = jsonMap["image"] as? String,
             url = jsonMap["url"] as? String

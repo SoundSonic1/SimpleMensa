@@ -5,13 +5,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.data.model.Meal
+import com.soundsonic.simplemensa.data.model.ResourceProvider
 import com.soundsonic.simplemensa.util.CurrencyUtil.euroCurrency
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MealDetailViewModel @Inject constructor() : ViewModel() {
+class MealDetailViewModel @Inject constructor(
+    private val resourceProvider: ResourceProvider
+) : ViewModel() {
     private val _meal: MutableLiveData<Meal> = MutableLiveData()
     val meal: LiveData<Meal> get() = _meal
     val mealNotes: LiveData<CharSequence> = Transformations.map(meal) {
@@ -26,7 +30,11 @@ class MealDetailViewModel @Inject constructor() : ViewModel() {
     }
     val prices: LiveData<String> = Transformations.map(meal) {
         it.prices.values.joinToString(" / ") { price ->
-            euroCurrency.format(price)
+            if (price == null) {
+                resourceProvider.getString(R.string.unknown)
+            } else {
+                euroCurrency.format(price)
+            }
         }
     }
     val imageUrl: LiveData<String> = Transformations.map(meal) {
