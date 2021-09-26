@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
     lateinit var customItemAnimator: RecyclerView.ItemAnimator
 
     private val canteenViewModel: CanteenViewModel by viewModels()
-    private val viewModel: UserViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding get() = _binding!!
 
@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.canteenViewModel = canteenViewModel
-        binding.userViewModel = viewModel
+        binding.userViewModel = userViewModel
 
         return binding.root
     }
@@ -44,27 +44,25 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(binding) {
-            canteenRecyclerView.apply {
-                adapter = CanteenListAdapter(object : CanteenListAdapter.CanteenListener {
+        binding.canteenRecyclerView.apply {
+            adapter = CanteenListAdapter(object : CanteenListAdapter.CanteenListener {
 
-                    override fun onCanteenClicked(canteen: Canteen) {
-                        val action = HomeFragmentDirections.actionNavHomeToTabFragment(canteen, canteen.name)
-                        findNavController().navigate(action)
-                    }
+                override fun onCanteenClicked(canteen: Canteen) {
+                    val action = HomeFragmentDirections.actionNavHomeToTabFragment(canteen, canteen.name)
+                    findNavController().navigate(action)
+                }
 
-                    override fun onFavouriteClicked(v: View, canteen: Canteen) {
-                        v.isSelected = !v.isSelected
-                        if (v.isSelected) {
-                            viewModel.addCanteen(canteen)
-                        } else {
-                            viewModel.removeCanteen(canteen)
-                        }
+                override fun onFavouriteClicked(v: View, canteen: Canteen) {
+                    v.isSelected = !v.isSelected
+                    if (v.isSelected) {
+                        userViewModel.addCanteen(canteen)
+                    } else {
+                        userViewModel.removeCanteen(canteen)
                     }
-                })
-                layoutManager = LinearLayoutManager(requireContext())
-                itemAnimator = customItemAnimator
-            }
+                }
+            })
+            layoutManager = LinearLayoutManager(requireContext())
+            itemAnimator = customItemAnimator
         }
     }
 
