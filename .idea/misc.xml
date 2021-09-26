@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/debug/res/xml/network_security_config.xml" value="0.3072916666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5168539325842697" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.5168539325842697" />
         <entry key="app/src/main/res/layout/canteen_item.xml" value="0.536" />

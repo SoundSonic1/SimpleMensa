@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private var menuItem: MenuItem? = null
     private val viewModel: MainViewModel by viewModels()
 
     @Inject
@@ -68,13 +69,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            menuItem?.isVisible = destination.id == R.id.nav_home
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
-        val item = menu.findItem(R.id.action_filter)
+        menuItem = menu.findItem(R.id.action_filter)
         lifecycleScope.launch {
-            item.isChecked = viewModel.getShowOnlyFavourites()
+            menuItem?.isChecked = viewModel.getShowOnlyFavourites()
         }
         return true
     }
