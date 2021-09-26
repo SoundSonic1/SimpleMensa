@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   android: circleci/android@1.0.3
+  sonarcloud: sonarsource/sonarcloud@1.0.2
 
 jobs:
   test:
@@ -21,6 +22,9 @@ jobs:
       - run:
           name: Run klintCheck
           command: ./gradlew ktlintCheck
+      - persist_to_workspace:
+          root: .
+          paths: app/build/jacoco
 
   build:
     working_directory: ~/code
@@ -78,6 +82,14 @@ jobs:
       - run:
           name: Upload apk
           command: ./node_modules/.bin/firebase appdistribution:distribute app-release.apk --app 1:672693801281:android:705e0fff90a5e3183ad1c0 --release-notes-file release-notes.md --groups "intern" --token "$FIREBASE_TOKEN"
+  sonarcloud-check:
+    docker:
+      - image: 'node:latest'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - sonarcloud/scan
 
 workflows:
   version: 2
@@ -89,6 +101,13 @@ workflows:
             branches:
               only:
                 - master
+      - sonarcloud-check:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - develop
       - deploy:
           requires:
             - test
