@@ -1,7 +1,6 @@
 package com.soundsonic.simplemensa.di
 
 import com.soundsonic.simplemensa.data.api.OpenMensaApi
-import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,8 +16,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOpenMensaApi(moshi: Moshi): OpenMensaApi = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
+    fun provideOpenMensaApi(): OpenMensaApi = Retrofit.Builder()
+        .addConverterFactory(MoshiConverterFactory.create())
         .baseUrl(BASE_URL)
         .build()
         .create(OpenMensaApi::class.java)

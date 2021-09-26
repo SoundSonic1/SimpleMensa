@@ -9,11 +9,11 @@ import kotlinx.parcelize.Parcelize
 data class Meal(
     val id: Int,
     val name: String,
-    val notes: List<String>? = null,
-    val prices: Map<String, Double?> = emptyMap(),
-    val category: String? = null,
-    val image: String? = null,
-    val url: String? = null
+    val notes: List<String>?,
+    val prices: Map<String, Double?>,
+    val category: String?,
+    val image: String?,
+    val url: String?
 ) : Parcelable {
 
     val isVegetarian: Boolean get() = notes?.any {
