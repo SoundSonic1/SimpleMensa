@@ -17,9 +17,6 @@ jobs:
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew jacocoTestDebugUnitTestReport && ./gradlew createDebugCoverageReport
       - run:
-          name: Upload to codecov
-          command: bash <(curl -s https://codecov.io/bash) -t a6b8afd6-1ed4-4e8c-9a21-7ced0f83ba36
-      - run:
           name: Run klintCheck
           command: ./gradlew ktlintCheck
       - persist_to_workspace:
