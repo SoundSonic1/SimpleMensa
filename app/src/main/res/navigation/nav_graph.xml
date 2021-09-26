@@ -20,16 +20,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.soundsonic.simplemensa.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-    <fragment
         android:id="@+id/tabFragment"
         android:name="com.soundsonic.simplemensa.ui.meals.TabFragment"
         android:label="{canteenName}"
-        tools:layout="@layout/fragment_tab"
-        >
+        tools:layout="@layout/fragment_tab">
         <argument
             android:name="canteen"
             app:argType="com.soundsonic.simplemensa.data.model.Canteen"
@@ -45,7 +39,8 @@
     <fragment
         android:id="@+id/mealDetailFragment"
         android:name="com.soundsonic.simplemensa.ui.mealdetail.MealDetailFragment"
-        android:label="{mealName}">
+        android:label="{mealName}"
+        tools:layout="@layout/fragment_meal_detail">
         <argument
             android:name="meal"
             app:argType="com.soundsonic.simplemensa.data.model.Meal" />
@@ -58,4 +53,8 @@
         android:name="com.soundsonic.simplemensa.ui.map.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.soundsonic.simplemensa.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings" />
 </navigation>

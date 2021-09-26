@@ -9,7 +9,7 @@
 
     <string name="menu_home">Mensen</string>
     <string name="menu_map">Karte</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_settings">Einstellungen</string>
 
     <string name="canteen_name">Alte Mensa</string>
     <string name="canteen_address">Mommsenstr. 13, 01069 Dresden</string>
@@ -19,4 +19,9 @@
     <string name="meal_prices">3,50€/5,40€</string>
 
     <string name="no_meals">Heute gibt es keine Gerichte.</string>
+    <string name="unknown">Unbekannt</string>
+
+    <string name="highlight_vegetarian_food_title">Vegetarische Gerichte hervorheben</string>
+    <string name="highlight_vegetarian_food_summary">Vegetarische Gerichte werden farblich hervorgehoben</string>
+    <string name="highlight_vegetarian_food_key">highlight_key</string>
 </resources>

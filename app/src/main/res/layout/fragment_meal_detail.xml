@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewModel"
             type="com.soundsonic.simplemensa.ui.mealdetail.MealDetailViewModel" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.mealdetail.MealDetailFragment">
@@ -17,8 +18,8 @@
             android:layout_margin="4dp"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp"
-            style="@style/CardViewStyle"
-            >
+            style="@style/CardViewStyle">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -26,38 +27,43 @@
                 >
                 <TextView
                     android:id="@+id/mealNameTextView"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.meal.name}"
                     android:textSize="16sp"
                     android:paddingBottom="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/mealImageView"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="220dp"
                     android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/mealNameTextView"
                     app:setImage="@{viewModel.imageUrl}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/notesTextView"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:paddingTop="4dp"
                     android:text="@{viewModel.mealNotes}"
-                    app:layout_constraintTop_toBottomOf="@id/mealImageView"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mealImageView" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/priceDetailTextView"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.prices}"
-                    app:layout_constraintTop_toBottomOf="@id/notesTextView"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/notesTextView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

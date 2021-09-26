@@ -79,6 +79,7 @@ dependencies {
     def moshi_version = "1.12.0"
     def room_version = "2.3.0"
     def junit_version = '5.7.1'
+    def preference_version = "1.1.1"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
@@ -94,6 +95,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.preference:preference-ktx:$preference_version"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_version"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3'
@@ -131,7 +133,7 @@ dependencies {
 
     implementation 'jp.wasabeef:recyclerview-animators:4.0.1'
 
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.1'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v9:0.12.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:0.9.0'
 

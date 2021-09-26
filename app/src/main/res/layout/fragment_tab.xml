@@ -8,21 +8,17 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tab_layout_meals"
-            >
-        </com.google.android.material.tabs.TabLayout>
+            android:id="@+id/tab_layout_meals"/>
 
         <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/view_pager">
-        </androidx.viewpager.widget.ViewPager>
+            android:id="@+id/view_pager"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </FrameLayout>
