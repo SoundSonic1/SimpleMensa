@@ -1,0 +1,72 @@
+[
+  {
+    "id": 258385,
+    "name": "Chili sin carne (I, L) mit Basmati Reis, dazu Salat (J)",
+    "notes": [
+      "Menü ist vegan",
+      "enthält Knoblauch",
+      "mit Antioxydationsmittel (3)",
+      "geschwefelt (5)",
+      "Sellerie (I)",
+      "Senf (J)",
+      "Sulfit/Schwefeldioxid (L)"
+    ],
+    "prices": {
+      "Studierende": 2.44,
+      "Bedienstete": 4.44
+    },
+    "category": "fertig 2",
+    "image": "//static.studentenwerk-dresden.de/bilder/mensen/studentenwerk-dresden-lieber-mensen-gehen.jpg",
+    "url": "https://www.studentenwerk-dresden.de/mensen/speiseplan/details-258385.html"
+  },
+  {
+    "id": 258386,
+    "name": "Buttermilchplinsen (A, A1, C, G) mit Apfelmus und Zucker (gerne auch als kleine Portion)",
+    "notes": [
+      "Menü ist vegetarisch",
+      "mit Antioxydationsmittel (3)",
+      "Glutenhaltiges Getreide (A)",
+      "Weizen (A1)",
+      "Eier (C)",
+      "Milch/Milchzucker (Laktose) (G)"
+    ],
+    "prices": {
+      "Studierende": 2.35,
+      "Bedienstete": 4.27
+    },
+    "category": "fertig 3",
+    "image": "//bilderspeiseplan.studentenwerk-dresden.de/m18/202109/258386.jpg",
+    "url": "https://www.studentenwerk-dresden.de/mensen/speiseplan/details-258386.html"
+  },
+  {
+    "id": 259426,
+    "name": "Bratwurst vom Dürrröhrsdorfer Fleischer (J) oder Tiegelwurst (A, A1) mit Barbecue-Kraut und Kartoffelpüree (G)",
+    "notes": [
+      "enthält Schweinefleisch",
+      "mit Konservierungsstoff (2)",
+      "mit Phosphat (8)",
+      "mit Süßungsmittel (9)",
+      "Milch/Milchzucker (Laktose) (G)",
+      "Senf (J)"
+    ],
+    "prices": {
+      "Studierende": 2.57,
+      "Bedienstete": 4.68
+    },
+    "category": "fertig 1",
+    "image": "//bilderspeiseplan.studentenwerk-dresden.de/m18/202109/259426.jpg",
+    "url": "https://www.studentenwerk-dresden.de/mensen/speiseplan/details-259426.html"
+  },
+  {
+    "id": 258418,
+    "name": "Liebe Gäste, ab sofort bieten wir unsere Salate wieder in Form eines Salatbuffets mit Ausgabe durch unser Personal an.",
+    "notes": [],
+    "prices": {
+      "Studierende": null,
+      "Bedienstete": null
+    },
+    "category": "Angebot des Tages 2",
+    "image": "//static.studentenwerk-dresden.de/bilder/mensen/studentenwerk-dresden-lieber-mensen-gehen.jpg",
+    "url": "https://www.studentenwerk-dresden.de/mensen/speiseplan/details-258418.html"
+  }
+]
