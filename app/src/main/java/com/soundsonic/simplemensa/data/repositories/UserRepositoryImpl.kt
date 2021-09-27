@@ -1,6 +1,9 @@
 package com.soundsonic.simplemensa.data.repositories
 
+import android.content.SharedPreferences
+import com.soundsonic.simplemensa.R
 import com.soundsonic.simplemensa.data.database.UserProfileDao
+import com.soundsonic.simplemensa.data.model.ResourceProvider
 import com.soundsonic.simplemensa.data.model.UserProfile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,6 +14,8 @@ import javax.inject.Singleton
 
 @Singleton
 class UserRepositoryImpl @Inject constructor(
+    sharedPreferences: SharedPreferences,
+    resourceProvider: ResourceProvider,
     private val userProfileDao: UserProfileDao
 ) : UserRepository {
 
@@ -20,6 +25,11 @@ class UserRepositoryImpl @Inject constructor(
 
     private val _userProfile: MutableStateFlow<UserProfile?> = MutableStateFlow(null)
     override val userProfile: StateFlow<UserProfile?> get() = _userProfile
+
+    private val _highlightVegetarianFood: MutableStateFlow<Boolean> = MutableStateFlow(
+        sharedPreferences.getBoolean(resourceProvider.getString(R.string.highlight_vegetarian_food_key), false)
+    )
+    override val highlightVegetarianFood: StateFlow<Boolean> get() = _highlightVegetarianFood
 
     override suspend fun loadUser() {
         _userProfile.value = getUserProfile()
@@ -50,6 +60,10 @@ class UserRepositoryImpl @Inject constructor(
             showOnlyFavourites = false
         )
         user
+    }
+
+    override fun setHighlightVegetarianFood(highlight: Boolean) {
+        _highlightVegetarianFood.value = highlight
     }
 
     private suspend fun insertUserProfile(profile: UserProfile) = withContext(Dispatchers.Default) {

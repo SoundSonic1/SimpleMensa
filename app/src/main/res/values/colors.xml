@@ -6,7 +6,7 @@
     <color name="colorAccent">#FF3F80</color>
     <color name="colorDarkGey">#121212</color>
 
-    <color name="colorBackground">@android:color/background_light</color>
     <color name="colorCardViewBackground">@android:color/background_light</color>
-    <color name="colorMenuItem">#FAFAFA</color>
+
+    <color name="colorVegetarian">#90EE90</color>
 </resources>

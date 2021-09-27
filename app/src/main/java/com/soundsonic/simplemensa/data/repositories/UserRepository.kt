@@ -6,10 +6,12 @@ import kotlinx.coroutines.flow.StateFlow
 interface UserRepository {
 
     val userProfile: StateFlow<UserProfile?>
+    val highlightVegetarianFood: StateFlow<Boolean>
 
     suspend fun loadUser()
     suspend fun addCanteen(canteenId: Int)
     suspend fun removeCanteen(canteenId: Int)
     suspend fun setShowOnlyFavourites(showOnlyFavourites: Boolean)
     suspend fun getUserProfile(): UserProfile
+    fun setHighlightVegetarianFood(highlight: Boolean)
 }

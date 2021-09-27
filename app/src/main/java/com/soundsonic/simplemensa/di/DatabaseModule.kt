@@ -1,8 +1,8 @@
 package com.soundsonic.simplemensa.di
 
 import android.app.Application
-import android.content.Context
 import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import androidx.room.Room
 import com.soundsonic.simplemensa.data.database.AppDatabase
 import com.soundsonic.simplemensa.data.database.CanteenDao
@@ -21,8 +21,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideSharedPrefs(app: Application): SharedPreferences = app
-        .getSharedPreferences("com.soundsonic.simplemensa.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
+    fun provideSharedPrefs(app: Application): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(app)
 
     @Provides
     @Singleton
