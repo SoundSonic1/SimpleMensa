@@ -21,7 +21,7 @@ jobs:
           command: ./gradlew ktlintCheck
       - persist_to_workspace:
           root: .
-          paths: app/build/jacoco
+          paths: app/build/reports
 
   build:
     working_directory: ~/code
