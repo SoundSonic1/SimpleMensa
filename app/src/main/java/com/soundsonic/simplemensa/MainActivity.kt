@@ -17,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.mapbox.mapboxsdk.Mapbox
 import com.soundsonic.simplemensa.databinding.ActivityMainBinding
 import com.soundsonic.simplemensa.ui.MainViewModel
 import com.soundsonic.simplemensa.util.Constants.DARK_THEME_ON
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Mapbox.getInstance(this, BuildConfig.MAPBOX_TOKEN)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

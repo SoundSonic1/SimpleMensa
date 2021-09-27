@@ -68,7 +68,7 @@ class MealsFragment : Fragment() {
                     override fun onMealClicked(v: View, meal: Meal) {
                         val action = TabFragmentDirections
                             .actionTabFragmentToMealDetailFragment(meal, meal.category ?: "")
-                        v.findNavController().navigate(action)
+                        findNavController().navigate(action)
                     }
                 })
                 layoutManager = LinearLayoutManager(requireContext())

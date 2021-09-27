@@ -13,7 +13,8 @@ data class Meal(
     val prices: Map<String, Double?>,
     val category: String?,
     val image: String?,
-    val url: String?
+    val url: String?,
+    var highlightMeal: Boolean = false
 ) : Parcelable {
 
     val isVegetarian: Boolean get() = notes?.any {
